@@ -27,9 +27,11 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPaused = true;
 
     // for playing sound effects
+    /*
     private SoundPool mSP;
     private int mEat_ID = -1;
     private int mCrashID = -1;
+     */
 
     // The size in segments of the playable area
     private final int NUM_BLOCKS_WIDE = 40;
@@ -47,18 +49,21 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Snake mSnake;
     // And an apple
     private Apple mApple;
+    private SnakeAudio snakeAudio;
 
 
     // This is the constructor method that gets called
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
         super(context);
+        snakeAudio = new SnakeAudio(context);
 
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
         // How many blocks of the same size will fit into the height
         mNumBlocksHigh = size.y / blockSize;
 
+        /*
         // Initialize the SoundPool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -87,6 +92,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         } catch (IOException e) {
             // Error
         }
+
+         */
 
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
@@ -179,14 +186,14 @@ class SnakeGame extends SurfaceView implements Runnable{
             // Add to  mScore
             mScore = mScore + 1;
 
-            // Play a sound
-            mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+            // Play eat sound
+            snakeAudio.playEatSound();
         }
 
         // Did the snake die?
         if (mSnake.detectDeath()) {
-            // Pause the game ready to start again
-            mSP.play(mCrashID, 1, 1, 0, 0, 1);
+            // Pause the game ready to start again, play crash sound
+            snakeAudio.playCrashSound();
 
             mPaused =true;
         }
