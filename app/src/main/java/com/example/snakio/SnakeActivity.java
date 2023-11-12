@@ -56,6 +56,22 @@ public class SnakeActivity extends Activity {
         setContentView(relativeLayout);
     }
 
+    public void moveLeft(View view) {
+        this.mSnakeGame.getSnake().move("Left");
+    }
+
+    public void moveUp(View view) {
+        this.mSnakeGame.getSnake().move("Up");
+    }
+
+    public void moveRight(View view) {
+        this.mSnakeGame.getSnake().move("Right");
+    }
+
+    public void moveDown(View view) {
+        this.mSnakeGame.getSnake().move("Down");
+    }
+
     // Start the thread in snakeEngine
     @Override
     protected void onResume() {

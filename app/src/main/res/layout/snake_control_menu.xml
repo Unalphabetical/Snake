@@ -28,7 +28,8 @@
 
             <Button
                 android:layout_width="50dp"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:onClick="moveUp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -37,7 +38,8 @@
 
                 <Button
                     android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:onClick="moveLeft"/>
 
                 <Button
                     android:layout_width="50dp"
@@ -46,12 +48,14 @@
 
                 <Button
                     android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:onClick="moveRight"/>
             </LinearLayout>
 
             <Button
                 android:layout_width="50dp"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:onClick="moveDown"/>
         </LinearLayout>
 
     </RelativeLayout>
@@ -84,7 +88,8 @@
 
             <Button
                 android:layout_width="50dp"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:onClick="moveUp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -93,7 +98,8 @@
 
                 <Button
                     android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:onClick="moveLeft"/>
 
                 <Button
                     android:layout_width="50dp"
@@ -102,12 +108,14 @@
 
                 <Button
                     android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:onClick="moveRight"/>
             </LinearLayout>
 
             <Button
                 android:layout_width="50dp"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:onClick="moveDown"/>
         </LinearLayout>
 
     </RelativeLayout>

@@ -222,9 +222,6 @@ class SnakeGame extends SurfaceView implements Runnable{
                     // Don't want to process snake direction for this tap
                     return true;
                 }
-
-                // Let the Snake class handle the input
-                mSnake.switchHeading(motionEvent);
                 break;
 
             default:
@@ -250,4 +247,9 @@ class SnakeGame extends SurfaceView implements Runnable{
         mThread = new Thread(this);
         mThread.start();
     }
+
+    public Snake getSnake() {
+        return mSnake;
+    }
+
 }
