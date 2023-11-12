@@ -169,8 +169,8 @@ class Snake {
         boolean dead = false;
 
         // Hit any of the screen edges
-        if (segmentLocations.get(0).x == -1 ||
-                segmentLocations.get(0).x > mMoveRange.x ||
+        if (segmentLocations.get(0).x == mMoveRange.x * 0.2 ||
+                segmentLocations.get(0).x > mMoveRange.x * 0.75 ||
                 segmentLocations.get(0).y == -1 ||
                 segmentLocations.get(0).y > mMoveRange.y) {
 
@@ -256,7 +256,6 @@ class Snake {
         }
     }
 
-
     // Handle changing direction
     void switchHeading(MotionEvent motionEvent) {
 
@@ -296,4 +295,5 @@ class Snake {
             }
         }
     }
+
 }
