@@ -43,8 +43,8 @@ class Apple {
     void spawn(){
         // Choose two random values and place the apple
         Random random = new Random();
-        location.x = random.nextInt(mSpawnRange.x) + 1;
-        location.y = random.nextInt(mSpawnRange.y - 1) + 1;
+        location.x = (int) (random.nextInt((int) (mSpawnRange.x * 0.5)) + (mSpawnRange.x * 0.25));
+        location.y = random.nextInt(mSpawnRange.y - 2) + 1;
     }
 
     // Let SnakeGame know where the apple is
