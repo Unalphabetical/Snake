@@ -56,44 +56,13 @@ class SnakeGame extends SurfaceView implements Runnable{
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
         super(context);
+
         snakeAudio = new SnakeAudio(context);
 
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
         // How many blocks of the same size will fit into the height
         mNumBlocksHigh = size.y / blockSize;
-
-        /*
-        // Initialize the SoundPool
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
-
-            mSP = new SoundPool.Builder()
-                    .setMaxStreams(5)
-                    .setAudioAttributes(audioAttributes)
-                    .build();
-        } else {
-            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-        }
-        try {
-            AssetManager assetManager = context.getAssets();
-            AssetFileDescriptor descriptor;
-
-            // Prepare the sounds in memory
-            descriptor = assetManager.openFd("get_apple.ogg");
-            mEat_ID = mSP.load(descriptor, 0);
-
-            descriptor = assetManager.openFd("snake_death.ogg");
-            mCrashID = mSP.load(descriptor, 0);
-
-        } catch (IOException e) {
-            // Error
-        }
-
-         */
 
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
@@ -109,7 +78,6 @@ class SnakeGame extends SurfaceView implements Runnable{
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
-
     }
 
 
@@ -227,13 +195,15 @@ class SnakeGame extends SurfaceView implements Runnable{
                 // Set the size and color of the mPaint for the text
                 mPaint.setColor(Color.argb(255, 255, 255, 255));
                 mPaint.setTextSize(250);
+                mPaint.setTextAlign(Paint.Align.CENTER);
+
+                //// Calculate the middle of the screen
+                //// with the font size included
+                int xPos = (mCanvas.getWidth() / 2);
+                int yPos = (int) ((mCanvas.getHeight() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2));
 
                 // Draw the message
-                // We will give this an international upgrade soon
-                mCanvas.drawText("Tap To Play!", 200, 700, mPaint);
-//                mCanvas.drawText(getResources().
-//                                getString(R.string.tap_to_play),
-//                        200, 700, mPaint);
+                mCanvas.drawText("Tap To Play!", xPos, yPos, mPaint);
             }
 
             // Unlock the mCanvas and reveal the graphics for this frame
@@ -264,7 +234,6 @@ class SnakeGame extends SurfaceView implements Runnable{
         return true;
     }
 
-
     // Stop the thread
     public void pause() {
         mPlaying = false;
@@ -274,7 +243,6 @@ class SnakeGame extends SurfaceView implements Runnable{
             // Error
         }
     }
-
 
     // Start the thread
     public void resume() {
