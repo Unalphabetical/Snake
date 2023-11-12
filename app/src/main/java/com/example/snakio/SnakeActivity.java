@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 public class SnakeActivity extends Activity {
 
@@ -33,11 +35,25 @@ public class SnakeActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+        //// This relative layout allows us to put the snake game and control menu together
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+
+        //// This loads in the control menu from the layout xml file
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View textView = inflater.inflate(R.layout.snake_control_menu, null);
+
         // Create a new instance of the SnakeEngine class
         mSnakeGame = new SnakeGame(this, size);
 
-        // Make snakeEngine the view of the Activity
-        setContentView(mSnakeGame);
+        //// This adds the snake game to the relative layout
+        relativeLayout.addView(mSnakeGame);
+
+        //// This adds the control menu to the relative layout
+        relativeLayout.addView(textView, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+
+        //// This sets the content view to the relative layout
+        //// which now has the snake game and control rendered on it
+        setContentView(relativeLayout);
     }
 
     // Start the thread in snakeEngine
