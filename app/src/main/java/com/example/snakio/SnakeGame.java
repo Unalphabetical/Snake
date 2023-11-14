@@ -158,6 +158,10 @@ class SnakeGame extends SurfaceView implements Runnable{
             snakeAudio.playEatSound();
         }
 
+        if (mSnake.wrapAround()) {
+            System.out.println("wrap around debug");
+        }
+
         // Did the snake die?
         if (mSnake.detectDeath()) {
             // Pause the game ready to start again, play crash sound

@@ -170,7 +170,7 @@ class Snake {
         boolean dead = false;
 
         // Hit any of the screen edges
-        if (segmentLocations.get(0).x == mMoveRange.x * 0.2 ||
+        if (segmentLocations.get(0).x < mMoveRange.x * 0.2 ||
                 segmentLocations.get(0).x > mMoveRange.x * 0.75 ||
                 segmentLocations.get(0).y == -1 ||
                 segmentLocations.get(0).y > mMoveRange.y) {
@@ -188,6 +188,27 @@ class Snake {
             }
         }
         return dead;
+    }
+
+    boolean wrapAround() {
+        if (segmentLocations.get(0).x < mMoveRange.x * 0.2) {
+            segmentLocations.get(0).x = (int) (mMoveRange.x * 0.75);
+            this.heading = Heading.LEFT;
+            return true;
+        } else if (segmentLocations.get(0).x > mMoveRange.x * 0.75) {
+            segmentLocations.get(0).x = (int) (mMoveRange.x * 0.2);
+            this.heading = Heading.RIGHT;
+            return true;
+        } else if (segmentLocations.get(0).y == -1) {
+            segmentLocations.get(0).y = mMoveRange.y;
+            this.heading = Heading.UP;
+            return true;
+        } else if (segmentLocations.get(0).y == mMoveRange.y) {
+            segmentLocations.get(0).y = 0;
+            this.heading = Heading.DOWN;
+            return true;
+        }
+        return false;
     }
 
     boolean checkDinner(Point l) {
