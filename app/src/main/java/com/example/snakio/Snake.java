@@ -173,7 +173,7 @@ class Snake {
         if (segmentLocations.get(0).x < mMoveRange.x * 0.2 ||
                 segmentLocations.get(0).x > mMoveRange.x * 0.75 ||
                 segmentLocations.get(0).y == -1 ||
-                segmentLocations.get(0).y > mMoveRange.y) {
+                segmentLocations.get(0).y > mMoveRange.y + 1) {
 
             dead = true;
         }
@@ -203,7 +203,7 @@ class Snake {
             segmentLocations.get(0).y = mMoveRange.y;
             this.heading = Heading.UP;
             return true;
-        } else if (segmentLocations.get(0).y == mMoveRange.y) {
+        } else if (segmentLocations.get(0).y > mMoveRange.y + 1) {
             segmentLocations.get(0).y = 0;
             this.heading = Heading.DOWN;
             return true;
