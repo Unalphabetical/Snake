@@ -57,19 +57,19 @@ public class SnakeActivity extends Activity {
     }
 
     public void moveLeft(View view) {
-        this.mSnakeGame.getSnake().move("Left");
+        this.mSnakeGame.getSnakeHandler().move("Left");
     }
 
     public void moveUp(View view) {
-        this.mSnakeGame.getSnake().move("Up");
+        this.mSnakeGame.getSnakeHandler().move("Up");
     }
 
     public void moveRight(View view) {
-        this.mSnakeGame.getSnake().move("Right");
+        this.mSnakeGame.getSnakeHandler().move("Right");
     }
 
     public void moveDown(View view) {
-        this.mSnakeGame.getSnake().move("Down");
+        this.mSnakeGame.getSnakeHandler().move("Down");
     }
 
     // Start the thread in snakeEngine
@@ -85,4 +85,5 @@ public class SnakeActivity extends Activity {
         super.onPause();
         mSnakeGame.pause();
     }
+
 }

@@ -1,20 +1,15 @@
 package com.example.snakio;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import java.io.IOException;
+
+import com.example.snakio.snake.SnakeHandler;
 
 class SnakeGame extends SurfaceView implements Runnable{
 
@@ -26,19 +21,9 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
 
-    // for playing sound effects
-    /*
-    private SoundPool mSP;
-    private int mEat_ID = -1;
-    private int mCrashID = -1;
-     */
-
     // The size in segments of the playable area
     private final int NUM_BLOCKS_WIDE = 40;
     private int mNumBlocksHigh;
-
-    // How many points does the player have
-    private int mScore;
 
     // Objects for drawing
     private Canvas mCanvas;
@@ -46,11 +31,10 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Paint mPaint;
 
     // A snake ssss
-    private Snake mSnake;
+    private SnakeHandler snakeHandler;
     // And an apple
     private Apple mApple;
     private SnakeAudio snakeAudio;
-
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -74,24 +58,26 @@ class SnakeGame extends SurfaceView implements Runnable{
                         mNumBlocksHigh),
                 blockSize);
 
-        mSnake = new Snake(context,
+        snakeHandler = new SnakeHandler(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
     }
 
+    //// Getter for the Snake Handler
+    //// Handles the art, movement, etc. of the snake
+    public SnakeHandler getSnakeHandler() {
+        return snakeHandler;
+    }
 
     // Called to start a new game
     public void newGame() {
 
         // reset the snake
-        mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
+        snakeHandler.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
 
         // Get the apple ready for dinner
         mApple.spawn();
-
-        // Reset the mScore
-        mScore = 0;
 
         // Setup mNextFrameTime so an update can triggered
         mNextFrameTime = System.currentTimeMillis();
@@ -112,7 +98,6 @@ class SnakeGame extends SurfaceView implements Runnable{
             draw();
         }
     }
-
 
     // Check to see if it is time for an update
     public boolean updateRequired() {
@@ -138,36 +123,36 @@ class SnakeGame extends SurfaceView implements Runnable{
         return false;
     }
 
-
     // Update all the game objects
     public void update() {
 
         // Move the snake
-        mSnake.move();
+        snakeHandler.move();
 
         // Did the head of the snake eat the apple?
-        if(mSnake.checkDinner(mApple.getLocation())){
+        if(snakeHandler.checkDinner(mApple.getLocation())){
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
             mApple.spawn();
 
-            // Add to  mScore
-            mScore = mScore + 1;
+            // Add to the score of the snake
+            snakeHandler.getSnake().setScore(snakeHandler.getSnake().getScore() + 1);
 
             // Play eat sound
             snakeAudio.playEatSound();
         }
 
-        if (mSnake.wrapAround()) {
+        //// This will be turned into a power later on.
+        if (snakeHandler.wrapAround()) {
             System.out.println("wrap around debug");
         }
 
         // Did the snake die?
-        if (mSnake.detectDeath()) {
+        if (snakeHandler.detectDeath()) {
             // Pause the game ready to start again, play crash sound
             snakeAudio.playCrashSound();
 
-            mPaused =true;
+            mPaused = true;
         }
 
     }
@@ -175,6 +160,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Do all the drawing
     public void draw() {
+
         // Get a lock on the mCanvas
         if (mSurfaceHolder.getSurface().isValid()) {
             mCanvas = mSurfaceHolder.lockCanvas();
@@ -187,11 +173,11 @@ class SnakeGame extends SurfaceView implements Runnable{
             mPaint.setTextSize(120);
 
             // Draw the score
-            mCanvas.drawText("" + mScore, 20, 120, mPaint);
+            mCanvas.drawText("" + snakeHandler.getSnake().getScore(), 20, 120, mPaint);
 
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
-            mSnake.draw(mCanvas, mPaint);
+            snakeHandler.draw(mCanvas, mPaint);
 
             // Draw some text while paused
             if(mPaused){
@@ -238,6 +224,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     // Stop the thread
     public void pause() {
         mPlaying = false;
+
         try {
             mThread.join();
         } catch (InterruptedException e) {
@@ -248,12 +235,9 @@ class SnakeGame extends SurfaceView implements Runnable{
     // Start the thread
     public void resume() {
         mPlaying = true;
+
         mThread = new Thread(this);
         mThread.start();
-    }
-
-    public Snake getSnake() {
-        return mSnake;
     }
 
 }
