@@ -227,6 +227,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         try {
             mThread.join();
+            if (!snakeAudio.isBackgroundMusicPaused()) snakeAudio.pauseBackgroundMusic();
         } catch (InterruptedException e) {
             // Error
         }
@@ -238,6 +239,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         mThread = new Thread(this);
         mThread.start();
+        if (snakeAudio.isBackgroundMusicPaused()) snakeAudio.playBackgroundMusic();
     }
 
 }
