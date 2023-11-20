@@ -8,6 +8,8 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.snakio.snake.SnakeHandler;
 import com.example.snakio.states.GameState;
@@ -39,6 +41,8 @@ public class SnakeGame extends SurfaceView implements Runnable{
     private Apple mApple;
     private SnakeAudio snakeAudio;
 
+    private TextView gameScore;
+
     // This is the constructor method that gets called
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
@@ -49,6 +53,8 @@ public class SnakeGame extends SurfaceView implements Runnable{
 
         //// Initialize the game state
         gameState = new GameState();
+
+//        gameScore = (TextView) findViewById(R.id.scoreValue);
 
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
@@ -69,6 +75,15 @@ public class SnakeGame extends SurfaceView implements Runnable{
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
+    }
+
+    public SnakeGame(SnakeActivity context, Point size, View viewById) {
+        this(context, size);
+        this.setGameScore((TextView) viewById);
+    }
+
+    public void setGameScore(TextView gameScore) {
+        this.gameScore = gameScore;
     }
 
     //// Getter for the Snake Handler
@@ -179,7 +194,10 @@ public class SnakeGame extends SurfaceView implements Runnable{
             mPaint.setTextSize(120);
 
             // Draw the score
-            mCanvas.drawText("" + snakeHandler.getSnake().getScore(), 20, 120, mPaint);
+            if (gameScore != null) {
+                gameScore.setText(String.valueOf(snakeHandler.getSnake().getScore()));
+                gameScore.invalidate();
+            }
 
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);

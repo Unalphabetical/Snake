@@ -7,6 +7,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class SnakeActivity extends Activity {
 
@@ -42,8 +43,13 @@ public class SnakeActivity extends Activity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View textView = inflater.inflate(R.layout.snake_control_menu, null);
 
+        //// This gets the text view from the control menu
+        TextView scoreTextView = (TextView) textView.findViewById(R.id.scoreValue);
+
         // Create a new instance of the SnakeEngine class
-        mSnakeGame = new SnakeGame(this, size);
+        //// The score text view is passed onto the SnakeEngine class
+        //// So we can show and update the score inside there
+        mSnakeGame = new SnakeGame(this, size, scoreTextView);
 
         //// This adds the snake game to the relative layout
         relativeLayout.addView(mSnakeGame);

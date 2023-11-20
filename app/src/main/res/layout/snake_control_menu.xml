@@ -29,7 +29,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:onClick="moveUp"/>
+                android:onClick="moveUp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -57,6 +57,21 @@
                 android:layout_height="50dp"
                 android:onClick="moveDown"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="75dp"
+            android:id="@+id/scoreText"
+            android:textSize="25dp"
+            android:text="Score: "/>
+
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="75dp"
+            android:layout_marginStart="80dp"
+            android:id="@+id/scoreValue"
+            android:textSize="25dp"
+            android:text="0"/>
 
     </RelativeLayout>
 
