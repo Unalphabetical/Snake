@@ -4,4 +4,11 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="settings">Settings</string>
     <string name="game">Snake</string>
+    <string name="resume">Resume</string>
+    <string name="disableSound">🔈</string>
+    <string name="enableSound">🔊</string>
+    <string name="disableMusic">🚫</string>
+    <string name="enableMusic">🎧︎</string>
+    <string name="deleteSave">Delete Save</string>
+    <string name="mainMenu">Main Menu</string>
 </resources>

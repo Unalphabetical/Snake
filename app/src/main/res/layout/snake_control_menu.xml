@@ -133,6 +133,15 @@
                 android:onClick="moveDown"/>
         </LinearLayout>
 
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/settings_icon"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:onClick="settingsMenu"
+            android:layout_alignParentEnd="true"/>
+
     </RelativeLayout>
 
 </LinearLayout>

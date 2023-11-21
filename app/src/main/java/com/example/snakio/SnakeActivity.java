@@ -1,6 +1,7 @@
 package com.example.snakio;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -76,6 +77,12 @@ public class SnakeActivity extends Activity {
 
     public void moveDown(View view) {
         this.mSnakeGame.getSnakeHandler().move("Down");
+    }
+
+    //// The click event for the "Settings" button
+    public void settingsMenu(View v){
+        Intent intent = new Intent(this, SnakeSettingsActivity.class);
+        startActivity(intent);
     }
 
     // Start the thread in snakeEngine
