@@ -267,6 +267,7 @@ public class SnakeGame extends SurfaceView implements Runnable{
     public void pause() {
         gameState.setPlaying(false);
         this.saveManager.setSnake(snakeHandler.getSnake())
+                .setGameState(gameState)
                 .save();
 
         try {
@@ -279,11 +280,12 @@ public class SnakeGame extends SurfaceView implements Runnable{
 
     // Start the thread
     public void resume() {
-        gameState.setPlaying(true);
         if (this.saveManager.hasData()) {
             this.saveManager.load();
             this.snakeHandler.setSnake(saveManager.getSnake());
+            this.gameState = saveManager.getGameState();
         }
+        gameState.setPlaying(true);
 
         mThread = new Thread(this);
         mThread.start();
