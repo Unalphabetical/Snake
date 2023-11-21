@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.snakio.managers.SaveManager;
 import com.example.snakio.snake.SnakeHandler;
 import com.example.snakio.states.GameState;
 
@@ -42,6 +43,8 @@ public class SnakeGame extends SurfaceView implements Runnable{
     private SnakeAudio snakeAudio;
 
     private TextView gameScore;
+
+    private SaveManager saveManager;
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -75,6 +78,9 @@ public class SnakeGame extends SurfaceView implements Runnable{
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
+
+        //// Initialize the save manager
+        saveManager = new SaveManager(context);
     }
 
     public SnakeGame(SnakeActivity context, Point size, View viewById) {
@@ -252,14 +258,16 @@ public class SnakeGame extends SurfaceView implements Runnable{
 
             default:
                 break;
-
         }
+
         return true;
     }
 
     // Stop the thread
     public void pause() {
         gameState.setPlaying(false);
+        this.saveManager.setSnake(snakeHandler.getSnake())
+                .save();
 
         try {
             mThread.join();
@@ -272,6 +280,10 @@ public class SnakeGame extends SurfaceView implements Runnable{
     // Start the thread
     public void resume() {
         gameState.setPlaying(true);
+        if (this.saveManager.hasData()) {
+            this.saveManager.load();
+            this.snakeHandler.setSnake(saveManager.getSnake());
+        }
 
         mThread = new Thread(this);
         mThread.start();

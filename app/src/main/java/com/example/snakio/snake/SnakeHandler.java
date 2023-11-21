@@ -111,6 +111,14 @@ public class SnakeHandler {
 
     }
 
+    public Snake getSnake() {
+        return this.snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
+    }
+
     public void move() {
         // Move the body
         // Start at the back and move it
@@ -285,10 +293,6 @@ public class SnakeHandler {
 
     public void move(String direction) {
         heading = Heading.valueOf(direction.toUpperCase(Locale.ROOT));
-    }
-
-    public Snake getSnake() {
-        return this.snake;
     }
 
 }
