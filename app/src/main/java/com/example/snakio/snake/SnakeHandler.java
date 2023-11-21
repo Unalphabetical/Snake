@@ -115,6 +115,10 @@ public class SnakeHandler {
         return this.snake;
     }
 
+    public Heading getHeading() {
+        return heading;
+    }
+
     public void setSnake(Snake snake) {
         this.snake = snake;
     }

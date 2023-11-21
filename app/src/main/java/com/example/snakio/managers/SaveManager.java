@@ -16,6 +16,7 @@ public class SaveManager {
 
     Snake snake;
     GameState gameState;
+    String heading;
 
     Apple apple;
 
@@ -32,6 +33,10 @@ public class SaveManager {
         return gameState;
     }
 
+    public String getHeading() {
+        return heading;
+    }
+
     public Apple getApple() {
         return apple;
     }
@@ -43,6 +48,11 @@ public class SaveManager {
 
     public SaveManager setGameState(GameState gameState) {
         this.gameState = gameState;
+        return this;
+    }
+
+    public SaveManager setHeading(String heading) {
+        this.heading = heading;
         return this;
     }
 
@@ -61,6 +71,10 @@ public class SaveManager {
         this.prefs.edit().putString("gameStateData", gameStateData).apply();
     }
 
+    public void saveHeadingData() {
+        this.prefs.edit().putString("headingData", this.heading).apply();
+    }
+
     public void saveAppleData() {
         String appleData = this.gson.toJson(this.apple);
         this.prefs.edit().putString("appleData", appleData).apply();
@@ -76,6 +90,10 @@ public class SaveManager {
         this.gameState = this.gson.fromJson(gameStateData, GameState.class);
     }
 
+    public void loadHeadingData() {
+        this.heading = this.prefs.getString("headingData", "null");
+    }
+
     public void loadAppleData() {
         String appleData = this.prefs.getString("appleData", "null");
         this.apple = this.gson.fromJson(appleData, Apple.class);
@@ -84,14 +102,19 @@ public class SaveManager {
     public boolean hasData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         String gameStateData = this.prefs.getString("gameStateData", "null");
+        String headingData = this.prefs.getString("headingData", "null");
         String appleData = this.prefs.getString("appleData", "null");
 
-        return !snakeData.equals("null") && !gameStateData.equals("null") && !appleData.equals("null");
+        return !snakeData.equals("null")
+                && !gameStateData.equals("null")
+                && !headingData.equals("null")
+                && !appleData.equals("null");
     }
 
     public void save() {
         this.saveSnakeData();
         this.saveGameState();
+        this.saveHeadingData();
         this.saveAppleData();
     }
 
@@ -99,6 +122,7 @@ public class SaveManager {
         if (hasData()) {
             this.loadSnakeData();
             this.loadGameState();
+            this.loadHeadingData();
             this.loadAppleData();
         }
     }
