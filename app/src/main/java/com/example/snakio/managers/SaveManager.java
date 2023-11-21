@@ -3,6 +3,7 @@ package com.example.snakio.managers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.snakio.Apple;
 import com.example.snakio.snake.Snake;
 import com.example.snakio.states.GameState;
 import com.google.gson.Gson;
@@ -15,6 +16,8 @@ public class SaveManager {
 
     Snake snake;
     GameState gameState;
+
+    Apple apple;
 
     public SaveManager(Context context) {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -29,6 +32,10 @@ public class SaveManager {
         return gameState;
     }
 
+    public Apple getApple() {
+        return apple;
+    }
+
     public SaveManager setSnake(Snake snake) {
         this.snake = snake;
         return this;
@@ -36,6 +43,11 @@ public class SaveManager {
 
     public SaveManager setGameState(GameState gameState) {
         this.gameState = gameState;
+        return this;
+    }
+
+    public SaveManager setApple(Apple apple) {
+        this.apple = apple;
         return this;
     }
 
@@ -49,6 +61,11 @@ public class SaveManager {
         this.prefs.edit().putString("gameStateData", gameStateData).apply();
     }
 
+    public void saveAppleData() {
+        String appleData = this.gson.toJson(this.apple);
+        this.prefs.edit().putString("appleData", appleData).apply();
+    }
+
     public void loadSnakeData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         this.snake = this.gson.fromJson(snakeData, Snake.class);
@@ -59,22 +76,30 @@ public class SaveManager {
         this.gameState = this.gson.fromJson(gameStateData, GameState.class);
     }
 
+    public void loadAppleData() {
+        String appleData = this.prefs.getString("appleData", "null");
+        this.apple = this.gson.fromJson(appleData, Apple.class);
+    }
+
     public boolean hasData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         String gameStateData = this.prefs.getString("gameStateData", "null");
+        String appleData = this.prefs.getString("appleData", "null");
 
-        return !snakeData.equals("null") && !gameStateData.equals("null");
+        return !snakeData.equals("null") && !gameStateData.equals("null") && !appleData.equals("null");
     }
 
     public void save() {
         this.saveSnakeData();
         this.saveGameState();
+        this.saveAppleData();
     }
 
     public void load() {
         if (hasData()) {
             this.loadSnakeData();
             this.loadGameState();
+            this.loadAppleData();
         }
     }
 

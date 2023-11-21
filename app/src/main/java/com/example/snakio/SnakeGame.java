@@ -268,6 +268,7 @@ public class SnakeGame extends SurfaceView implements Runnable{
         gameState.setPlaying(false);
         this.saveManager.setSnake(snakeHandler.getSnake())
                 .setGameState(gameState)
+                .setApple(mApple)
                 .save();
 
         try {
@@ -284,6 +285,7 @@ public class SnakeGame extends SurfaceView implements Runnable{
             this.saveManager.load();
             this.snakeHandler.setSnake(saveManager.getSnake());
             this.gameState = saveManager.getGameState();
+            this.mApple = saveManager.getApple().generateBitmap(getContext());
         }
         gameState.setPlaying(true);
 

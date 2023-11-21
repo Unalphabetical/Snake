@@ -6,9 +6,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+
 import java.util.Random;
 
-class Apple {
+public class Apple {
 
     // The location of the apple on the grid
     // Not in pixels
@@ -27,16 +28,15 @@ class Apple {
 
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
+
         // Make a note of the size of an apple
         mSize = s;
+
         // Hide the apple off-screen until the game starts
         location.x = -10;
 
-        // Load the image to the bitmap
-        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+        generateBitmap(context);
 
-        // Resize the bitmap
-        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, s, s, false);
     }
 
     // This is called every time an apple is eaten
@@ -57,7 +57,18 @@ class Apple {
     void draw(Canvas canvas, Paint paint){
         canvas.drawBitmap(mBitmapApple,
                 location.x * mSize, location.y * mSize, paint);
+    }
 
+    //// This is required to regenerate the bitmap
+    //// after the Apple is saved and loaded back into memory
+    public Apple generateBitmap(Context context) {
+        // Load the image to the bitmap
+        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+
+        // Resize the bitmap
+        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, mSize, mSize, false);
+
+        return this;
     }
 
 }
