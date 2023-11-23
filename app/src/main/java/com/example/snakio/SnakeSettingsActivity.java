@@ -44,7 +44,8 @@ public class SnakeSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 toggleMusic(v);
 
-                // Print the current state of the music_button
+                // Print the current state of the music_button for testing
+                //Cannot use println b/c android studio uses logs
                 boolean isMusicDisabled = musicButton.isChecked();
                 Log.d("MusicState", "Music is disabled: " + isMusicDisabled);
             }
@@ -59,18 +60,7 @@ public class SnakeSettingsActivity extends AppCompatActivity {
 
         // Set the new state
         saveManager.setMusicDisabled(isMusicDisabled);
-
-
-
-
     }
-
-
-
-
-
-
-
 
 
     public void resumeGame(View v) {

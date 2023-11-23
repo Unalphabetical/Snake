@@ -98,7 +98,6 @@ public class SnakeAudio {
 
     // Background music methods
     public void playBackgroundMusic() {
-        //mediaPlayer.start();
 
         // Get the current music state
         SaveManager saveManager = new SaveManager(context);
@@ -126,6 +125,8 @@ public class SnakeAudio {
 
 
     // Mute background music
+    //Unecessary code for now
+    /*
     public void muteBackgroundMusic() {
         mediaPlayer.setVolume(0f, 0f);
     }
@@ -134,6 +135,8 @@ public class SnakeAudio {
     public void unmuteBackgroundMusic() {
         mediaPlayer.setVolume(1f, 1f);
     }
+
+     */
 
 
 
