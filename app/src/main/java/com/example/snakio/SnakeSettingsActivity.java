@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
+import android.util.Log;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +16,8 @@ public class SnakeSettingsActivity extends AppCompatActivity {
 
     private ToggleButton musicButton;
     private SaveManager saveManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,34 +36,42 @@ public class SnakeSettingsActivity extends AppCompatActivity {
 
         // Update the UI to reflect the current music state
         ToggleButton musicButton = findViewById(R.id.music_button);
-        musicButton.setChecked(new SaveManager(this).isMusicEnabled());
+        musicButton.setChecked(new SaveManager(this).isMusicDisabled());
 
         // Set listener for music toggle button
         musicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleMusic(v);
+
+                // Print the current state of the music_button
+                boolean isMusicDisabled = musicButton.isChecked();
+                Log.d("MusicState", "Music is disabled: " + isMusicDisabled);
             }
         });
     }
 
+
     public void toggleMusic(View v) {
         SaveManager saveManager = new SaveManager(this);
-        boolean isMusicEnabled = !saveManager.isMusicEnabled(); // Toggle the current state
+        boolean isMusicDisabled = !saveManager.isMusicDisabled(); // Toggle the current state
+
 
         // Set the new state
-        saveManager.setMusicEnabled(isMusicEnabled);
+        saveManager.setMusicDisabled(isMusicDisabled);
+
+
+
+
     }
 
-    private void updateButtonText(boolean isMusicEnabled) {
-        if (isMusicEnabled) {
-            musicButton.setTextOn(getString(R.string.disableMusic));
-            musicButton.setTextOff(getString(R.string.enableMusic));
-        } else {
-            musicButton.setTextOn(getString(R.string.enableMusic));
-            musicButton.setTextOff(getString(R.string.disableMusic));
-        }
-    }
+
+
+
+
+
+
+
 
     public void resumeGame(View v) {
         Intent intent = new Intent(this, SnakeActivity.class);

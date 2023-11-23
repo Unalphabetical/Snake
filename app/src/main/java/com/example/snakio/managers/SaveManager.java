@@ -120,7 +120,7 @@ public class SaveManager {
         this.saveHeadingData();
         this.saveAppleData();
         // Save the music state
-        this.prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isMusicEnabled()).apply();
+        this.prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isMusicDisabled()).apply();
     }
 
     public void load() {
@@ -137,12 +137,12 @@ public class SaveManager {
     }
 
 
-    public boolean isMusicEnabled() {
+    public boolean isMusicDisabled() {
         return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
     }
 
-    public SaveManager setMusicEnabled(boolean isEnabled) {
-        prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isEnabled).apply();
+    public SaveManager setMusicDisabled(boolean isMusicDisabled) {
+        prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isMusicDisabled).apply();
         return this;
     }
 

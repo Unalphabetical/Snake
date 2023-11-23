@@ -9,6 +9,8 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 
+import com.example.snakio.managers.SaveManager;
+
 import java.io.IOException;
 
 public class SnakeAudio {
@@ -17,6 +19,8 @@ public class SnakeAudio {
     private SoundPool mSP;
     private int mEat_ID = -1;
     private int mCrashID = -1;
+
+    public boolean isMusicEnabled;
 
 
     //Added MediaPlayer for background music
@@ -42,6 +46,13 @@ public class SnakeAudio {
         // Initialize MediaPlayer for background music
         mediaPlayer = new MediaPlayer();
         try {
+            // Get the initial music state from SaveManager
+            SaveManager saveManager = new SaveManager(context);
+            isMusicEnabled = saveManager.isMusicDisabled();
+
+
+
+
             AssetFileDescriptor afd = context.getAssets().openFd("background_music.ogg");
             mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             afd.close();
@@ -87,8 +98,17 @@ public class SnakeAudio {
 
     // Background music methods
     public void playBackgroundMusic() {
-        mediaPlayer.start();
+        //mediaPlayer.start();
 
+        // Get the current music state
+        SaveManager saveManager = new SaveManager(context);
+        isMusicEnabled = !saveManager.isMusicDisabled();
+
+        if (isMusicEnabled) {
+            mediaPlayer.start();
+        } else {
+            mediaPlayer.pause();
+        }
     }
 
     public void pauseBackgroundMusic() {
@@ -100,12 +120,8 @@ public class SnakeAudio {
     }
 
 
-    public static SnakeAudio getInstance(Context context) {
-        if (instance == null) {
-            instance = new SnakeAudio(context);
-        }
-        return instance;
-    }
+
+
 
 
 
