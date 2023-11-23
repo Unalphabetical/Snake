@@ -20,6 +20,9 @@ public class SaveManager {
 
     Apple apple;
 
+    private static final String MUSIC_ENABLED_KEY = "musicEnabled";
+
+
     public SaveManager(Context context) {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
         this.prefs = context.getSharedPreferences("com.example.snakio", Context.MODE_PRIVATE);
@@ -116,6 +119,8 @@ public class SaveManager {
         this.saveGameState();
         this.saveHeadingData();
         this.saveAppleData();
+        // Save the music state
+        this.prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isMusicEnabled()).apply();
     }
 
     public void load() {
@@ -130,5 +135,19 @@ public class SaveManager {
     public void deleteData() {
         this.prefs.edit().clear().apply();
     }
+
+
+    public boolean isMusicEnabled() {
+        return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
+    }
+
+    public SaveManager setMusicEnabled(boolean isEnabled) {
+        prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isEnabled).apply();
+        return this;
+    }
+
+
+
+
 
 }
