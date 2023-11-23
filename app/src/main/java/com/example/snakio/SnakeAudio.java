@@ -48,9 +48,13 @@ public class SnakeAudio {
             mediaPlayer.prepare();
             mediaPlayer.setVolume(1f, 1f);
             mediaPlayer.setLooping(true);
+
+
             if (!mediaPlayer.isPlaying()) {
                 playBackgroundMusic();
             }
+
+
 
             // Load other sounds
             try {
@@ -91,5 +95,22 @@ public class SnakeAudio {
     public boolean isBackgroundMusicPaused() {
         return !mediaPlayer.isPlaying();
     }
+
+
+
+
+
+    // Mute background music
+    public void muteBackgroundMusic() {
+        mediaPlayer.setVolume(0f, 0f);
+    }
+
+    // Unmute background music
+    public void unmuteBackgroundMusic() {
+        mediaPlayer.setVolume(1f, 1f);
+    }
+
+
+
 }
 
