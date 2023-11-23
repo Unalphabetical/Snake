@@ -18,6 +18,7 @@ public class SnakeAudio {
     private int mEat_ID = -1;
     private int mCrashID = -1;
 
+
     //Added MediaPlayer for background music
     private MediaPlayer mediaPlayer;
 
@@ -53,6 +54,8 @@ public class SnakeAudio {
             if (!mediaPlayer.isPlaying()) {
                 playBackgroundMusic();
             }
+
+
 
 
 
@@ -97,6 +100,12 @@ public class SnakeAudio {
     }
 
 
+    public static SnakeAudio getInstance(Context context) {
+        if (instance == null) {
+            instance = new SnakeAudio(context);
+        }
+        return instance;
+    }
 
 
 
