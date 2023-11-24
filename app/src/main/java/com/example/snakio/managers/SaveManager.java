@@ -83,6 +83,11 @@ public class SaveManager {
         this.prefs.edit().putString("appleData", appleData).apply();
     }
 
+    public SaveManager setMusicEnabled(boolean musicEnabled) {
+        prefs.edit().putBoolean(MUSIC_ENABLED_KEY, musicEnabled).apply();
+        return this;
+    }
+
     public void loadSnakeData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         this.snake = this.gson.fromJson(snakeData, Snake.class);
@@ -102,6 +107,10 @@ public class SaveManager {
         this.apple = this.gson.fromJson(appleData, Apple.class);
     }
 
+    public boolean isMusicEnabled() {
+        return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
+    }
+
     public boolean hasData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         String gameStateData = this.prefs.getString("gameStateData", "null");
@@ -119,8 +128,7 @@ public class SaveManager {
         this.saveGameState();
         this.saveHeadingData();
         this.saveAppleData();
-        // Save the music state
-        this.prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isMusicDisabled()).apply();
+        this.setMusicEnabled(this.isMusicEnabled());
     }
 
     public void load() {
@@ -137,14 +145,6 @@ public class SaveManager {
     }
 
 
-    public boolean isMusicDisabled() {
-        return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
-    }
-
-    public SaveManager setMusicDisabled(boolean isMusicDisabled) {
-        prefs.edit().putBoolean(MUSIC_ENABLED_KEY, isMusicDisabled).apply();
-        return this;
-    }
 
 
 

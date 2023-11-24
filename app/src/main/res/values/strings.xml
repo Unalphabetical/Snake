@@ -8,7 +8,7 @@
     <string name="disableSound">🔈</string>
     <string name="enableSound">🔊</string>
     <string name="disableMusic">🚫</string>
-    <string name="enableMusic">🎧︎</string>
+    <string name="enableMusic">🎵</string>
     <string name="deleteSave">Delete Save</string>
     <string name="mainMenu">Main Menu</string>
 </resources>

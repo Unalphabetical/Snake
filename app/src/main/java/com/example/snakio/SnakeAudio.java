@@ -22,12 +22,15 @@ public class SnakeAudio {
 
     public boolean isMusicEnabled;
 
-
-    //Added MediaPlayer for background music
+    //// Added MediaPlayer for background music
     private MediaPlayer mediaPlayer;
+
+    //// Added SaveManager to get the current music state
+    private SaveManager saveManager;
 
     public SnakeAudio(Context context) {
         this.context = context;
+        saveManager = new SaveManager(context);
 
         // Initialize the SoundPool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -46,13 +49,6 @@ public class SnakeAudio {
         // Initialize MediaPlayer for background music
         mediaPlayer = new MediaPlayer();
         try {
-            // Get the initial music state from SaveManager
-            SaveManager saveManager = new SaveManager(context);
-            isMusicEnabled = saveManager.isMusicDisabled();
-
-
-
-
             AssetFileDescriptor afd = context.getAssets().openFd("background_music.ogg");
             mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             afd.close();
@@ -61,14 +57,9 @@ public class SnakeAudio {
             mediaPlayer.setVolume(1f, 1f);
             mediaPlayer.setLooping(true);
 
-
             if (!mediaPlayer.isPlaying()) {
                 playBackgroundMusic();
             }
-
-
-
-
 
             // Load other sounds
             try {
@@ -98,16 +89,15 @@ public class SnakeAudio {
 
     // Background music methods
     public void playBackgroundMusic() {
-
         // Get the current music state
-        SaveManager saveManager = new SaveManager(context);
-        isMusicEnabled = !saveManager.isMusicDisabled();
+        isMusicEnabled = saveManager.isMusicEnabled();
 
         if (isMusicEnabled) {
             mediaPlayer.start();
         } else {
             mediaPlayer.pause();
         }
+
     }
 
     public void pauseBackgroundMusic() {
@@ -117,28 +107,6 @@ public class SnakeAudio {
     public boolean isBackgroundMusicPaused() {
         return !mediaPlayer.isPlaying();
     }
-
-
-
-
-
-
-
-    // Mute background music
-    //Unecessary code for now
-    /*
-    public void muteBackgroundMusic() {
-        mediaPlayer.setVolume(0f, 0f);
-    }
-
-    // Unmute background music
-    public void unmuteBackgroundMusic() {
-        mediaPlayer.setVolume(1f, 1f);
-    }
-
-     */
-
-
 
 }
 

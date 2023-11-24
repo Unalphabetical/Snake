@@ -39,17 +39,18 @@
                 android:id="@+id/music_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:textOff="🎵"
-                android:textOn="@string/disableMusic"
+                android:textOn="@string/enableMusic"
+                android:textOff="@string/disableMusic"
+                android:checked="true"
+                android:onClick="toggleMusic"
                 android:textSize="24sp" />
 
             <ToggleButton
                 android:id="@+id/sound_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textOn="@string/disableSound"
-                android:textOff="@string/enableSound"
+                android:textOn="@string/enableSound"
+                android:textOff="@string/disableSound"
                 android:checked="false"
                 android:textSize="24sp" />
 

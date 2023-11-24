@@ -1,12 +1,9 @@
 package com.example.snakio;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
-import android.util.Log;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,37 +28,23 @@ public class SnakeSettingsActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.snake_settings_menu);
 
-        musicButton = findViewById(R.id.music_button);
         saveManager = new SaveManager(this);
 
         // Update the UI to reflect the current music state
-        ToggleButton musicButton = findViewById(R.id.music_button);
-        musicButton.setChecked(new SaveManager(this).isMusicDisabled());
-
-        // Set listener for music toggle button
-        musicButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleMusic(v);
-
-                // Print the current state of the music_button for testing
-                //Cannot use println b/c android studio uses logs
-                boolean isMusicDisabled = musicButton.isChecked();
-                Log.d("MusicState", "Music is disabled: " + isMusicDisabled);
-            }
-        });
+        musicButton = findViewById(R.id.music_button);
+        musicButton.setChecked(saveManager.isMusicEnabled());
     }
 
 
     public void toggleMusic(View v) {
-        SaveManager saveManager = new SaveManager(this);
-        boolean isMusicDisabled = !saveManager.isMusicDisabled(); // Toggle the current state
+        //// Enable or disable the music
+        if (musicButton.isChecked()) {
+            saveManager.setMusicEnabled(true);
+        } else {
+            saveManager.setMusicEnabled(false);
+        }
 
-
-        // Set the new state
-        saveManager.setMusicDisabled(isMusicDisabled);
     }
-
 
     public void resumeGame(View v) {
         Intent intent = new Intent(this, SnakeActivity.class);
