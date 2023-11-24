@@ -3,11 +3,16 @@ package com.example.snakio.managers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.snakio.Apple;
+import com.example.snakio.apples.Apple;
 import com.example.snakio.snake.Snake;
 import com.example.snakio.states.GameState;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SaveManager {
 
@@ -18,10 +23,9 @@ public class SaveManager {
     GameState gameState;
     String heading;
 
-    Apple apple;
+    List<Apple> appleList;
 
     private static final String MUSIC_ENABLED_KEY = "musicEnabled";
-
 
     public SaveManager(Context context) {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -40,8 +44,8 @@ public class SaveManager {
         return heading;
     }
 
-    public Apple getApple() {
-        return apple;
+    public List<Apple> getAppleList() {
+        return appleList;
     }
 
     public SaveManager setSnake(Snake snake) {
@@ -59,8 +63,8 @@ public class SaveManager {
         return this;
     }
 
-    public SaveManager setApple(Apple apple) {
-        this.apple = apple;
+    public SaveManager setAppleList(List<Apple> appleList) {
+        this.appleList = appleList;
         return this;
     }
 
@@ -79,7 +83,7 @@ public class SaveManager {
     }
 
     public void saveAppleData() {
-        String appleData = this.gson.toJson(this.apple);
+        String appleData = this.gson.toJson(this.appleList);
         this.prefs.edit().putString("appleData", appleData).apply();
     }
 
@@ -104,7 +108,8 @@ public class SaveManager {
 
     public void loadAppleData() {
         String appleData = this.prefs.getString("appleData", "null");
-        this.apple = this.gson.fromJson(appleData, Apple.class);
+        Type listType = new TypeToken<ArrayList<Apple>>(){}.getType();
+        this.appleList = this.gson.fromJson(appleData, listType);
     }
 
     public boolean isMusicEnabled() {
@@ -143,11 +148,5 @@ public class SaveManager {
     public void deleteData() {
         this.prefs.edit().clear().apply();
     }
-
-
-
-
-
-
 
 }

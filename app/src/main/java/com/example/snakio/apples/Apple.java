@@ -1,4 +1,4 @@
-package com.example.snakio;
+package com.example.snakio.apples;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,8 +23,10 @@ public class Apple {
     // An image to represent the apple
     private Bitmap mBitmapApple;
 
+    int apple;
+
     /// Set up the apple in the constructor
-    Apple(Context context, Point sr, int s){
+    public Apple(Context context, Point sr, int s, int apple){
 
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
@@ -35,12 +37,15 @@ public class Apple {
         // Hide the apple off-screen until the game starts
         location.x = -10;
 
-        generateBitmap(context);
+        //// Make a note of the apple to refresh the bitmap
+        this.apple = apple;
+
+        refreshBitmap(context);
 
     }
 
     // This is called every time an apple is eaten
-    void spawn(){
+    public void spawn(){
         // Choose two random values and place the apple
         Random random = new Random();
         location.x = (int) (random.nextInt((int) (mSpawnRange.x * 0.5)) + (mSpawnRange.x * 0.25));
@@ -49,21 +54,21 @@ public class Apple {
 
     // Let SnakeGame know where the apple is
     // SnakeGame can share this with the snake
-    Point getLocation(){
+    public Point getLocation(){
         return location;
     }
 
     // Draw the apple
-    void draw(Canvas canvas, Paint paint){
+    public void draw(Canvas canvas, Paint paint){
         canvas.drawBitmap(mBitmapApple,
                 location.x * mSize, location.y * mSize, paint);
     }
 
-    //// This is required to regenerate the bitmap
+    //// This is required to refresh the bitmap
     //// after the Apple is saved and loaded back into memory
-    public Apple generateBitmap(Context context) {
+    public Apple refreshBitmap(Context context) {
         // Load the image to the bitmap
-        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), apple);
 
         // Resize the bitmap
         mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, mSize, mSize, false);
