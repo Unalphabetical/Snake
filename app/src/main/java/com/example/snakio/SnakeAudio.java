@@ -46,8 +46,15 @@ public class SnakeAudio {
         } else {
             mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         }
+
         // Initialize MediaPlayer for background music
-        mediaPlayer = new MediaPlayer();
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        } else {
+            mediaPlayer.release();
+            mediaPlayer = new MediaPlayer();
+        }
+
         try {
             AssetFileDescriptor afd = context.getAssets().openFd("background_music.ogg");
             mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
@@ -95,7 +102,7 @@ public class SnakeAudio {
         if (isMusicEnabled) {
             mediaPlayer.start();
         } else {
-            mediaPlayer.pause();
+            if (mediaPlayer.isPlaying()) mediaPlayer.pause();
         }
 
     }
