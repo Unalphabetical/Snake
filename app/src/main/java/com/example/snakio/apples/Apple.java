@@ -25,6 +25,9 @@ public class Apple {
 
     int apple;
 
+    private long expireDuration;
+    private long expireTime;
+
     /// Set up the apple in the constructor
     public Apple(Context context, Point sr, int s, int apple){
 
@@ -42,6 +45,16 @@ public class Apple {
 
         refreshBitmap(context);
 
+    }
+
+    public Apple setValidity(int seconds) {
+        this.expireDuration = seconds * 1000L;
+        return updateValidity();
+    }
+
+    public Apple updateValidity() {
+        this.expireTime = System.currentTimeMillis() + this.expireDuration;
+        return this;
     }
 
     // This is called every time an apple is eaten
@@ -74,6 +87,10 @@ public class Apple {
         mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, mSize, mSize, false);
 
         return this;
+    }
+
+    public boolean isExpired() {
+        return System.currentTimeMillis() >= this.expireTime;
     }
 
 }

@@ -18,7 +18,8 @@ public class AppleManager {
     public AppleManager(Context context, Point sr, int s, int appleCount) {
         this.context = context;
         for (int i = 0; i < appleCount; i++) {
-            this.appleList.add(new RedApple(context, sr, s, R.drawable.apple).refreshBitmap(context));
+            Apple apple = new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context);
+            this.appleList.add(apple);
         }
     }
 
