@@ -11,4 +11,9 @@ public class RedApple extends Apple {
         super(context, sr, s, apple);
     }
 
+    @Override
+    public boolean onEaten(Object... objects) {
+        return false;
+    }
+
 }

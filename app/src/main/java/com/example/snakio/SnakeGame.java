@@ -175,6 +175,8 @@ public class SnakeGame extends SurfaceView implements Runnable {
                 // Add to the score of the snake
                 snakeHandler.getSnake().setScore(snakeHandler.getSnake().getScore() + 1);
 
+                apple.onEaten(getObjects());
+
                 // Play eat sound
                 snakeAudio.playEatSound();
             }
@@ -306,6 +308,12 @@ public class SnakeGame extends SurfaceView implements Runnable {
         mThread = new Thread(this);
         mThread.start();
         //if (snakeAudio.isBackgroundMusicPaused()) snakeAudio.playBackgroundMusic();
+    }
+
+    //// This returns all the objects needed for the power up events
+    //// So we can manipulate the game, snake handler, or snake itself
+    public Object[] getObjects() {
+        return new Object[]{this, this.snakeHandler, this.snakeHandler.getSnake()};
     }
 
 }

@@ -9,7 +9,7 @@ import android.graphics.Point;
 
 import java.util.Random;
 
-public class Apple {
+public abstract class Apple {
 
     // The location of the apple on the grid
     // Not in pixels
@@ -92,5 +92,7 @@ public class Apple {
     public boolean isExpired() {
         return System.currentTimeMillis() >= this.expireTime;
     }
+
+    public abstract boolean onEaten(Object... objects);
 
 }

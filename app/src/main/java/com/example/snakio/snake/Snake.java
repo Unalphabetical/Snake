@@ -41,4 +41,12 @@ public class Snake {
         this.score = 0;
     }
 
+    public void restart() {
+        int x = this.segments.get(0).getX();
+        int y = this.segments.get(0).getY();
+        deleteSegments();
+        grow(new Point(x, y), Segments.Type.HEAD);
+        this.score = 0;
+    }
+
 }
