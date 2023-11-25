@@ -169,13 +169,15 @@ public class SnakeGame extends SurfaceView implements Runnable {
             if(snakeHandler.checkDinner(apple.getLocation())){
                 // This reminds me of Edge of Tomorrow.
                 // One day the apple will be ready!
-                apple.updateValidity();
-                apple.spawn();
+
+                //// Call the power up event
+                apple.onEaten(getObjects());
+
+                //// Allow a new apple type to be spawned
+                appleManager.replaceApple(apple);
 
                 // Add to the score of the snake
                 snakeHandler.getSnake().setScore(snakeHandler.getSnake().getScore() + 1);
-
-                apple.onEaten(getObjects());
 
                 // Play eat sound
                 snakeAudio.playEatSound();

@@ -46,8 +46,8 @@ public class AppleManager {
 
     public List<Apple> loadApples() {
         List<Apple> appleChoice = new ArrayList<>();
-        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context).spawn());
+        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context).spawn());
         return appleChoice;
     }
 
@@ -70,6 +70,12 @@ public class AppleManager {
             }
         }
         return apple;
+    }
+
+    public void replaceApple(Apple apple) {
+        int index = appleList.indexOf(apple);
+        Apple randomApple = getRandomApple();
+        appleList.set(index, randomApple);
     }
 
 }

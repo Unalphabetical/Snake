@@ -9,7 +9,7 @@ import android.graphics.Point;
 
 import java.util.Random;
 
-public abstract class Apple {
+public class Apple {
 
     // The location of the apple on the grid
     // Not in pixels
@@ -58,11 +58,12 @@ public abstract class Apple {
     }
 
     // This is called every time an apple is eaten
-    public void spawn(){
+    public Apple spawn(){
         // Choose two random values and place the apple
         Random random = new Random();
         location.x = (int) (random.nextInt((int) (mSpawnRange.x * 0.5)) + (mSpawnRange.x * 0.25));
         location.y = random.nextInt(mSpawnRange.y - 2) + 1;
+        return this;
     }
 
     // Let SnakeGame know where the apple is
@@ -93,6 +94,8 @@ public abstract class Apple {
         return System.currentTimeMillis() >= this.expireTime;
     }
 
-    public abstract boolean onEaten(Object... objects);
+    public boolean onEaten(Object... objects) {
+        return false;
+    }
 
 }
