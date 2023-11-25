@@ -3,8 +3,9 @@ package com.example.snakio.managers;
 import android.content.Context;
 import android.graphics.Point;
 
-import com.example.snakio.apples.Apple;
 import com.example.snakio.R;
+import com.example.snakio.apples.Apple;
+import com.example.snakio.apples.types.GreenApple;
 import com.example.snakio.apples.types.RedApple;
 
 import java.util.ArrayList;
@@ -13,12 +14,17 @@ import java.util.List;
 public class AppleManager {
 
     Context context;
+    Point sr;
+    int s;
     List<Apple> appleList = new ArrayList<>();
 
     public AppleManager(Context context, Point sr, int s, int appleCount) {
+        this.sr = sr;
+        this.s = s;
+
         this.context = context;
         for (int i = 0; i < appleCount; i++) {
-            Apple apple = new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context);
+            Apple apple = getRandomApple();
             this.appleList.add(apple);
         }
     }
@@ -36,6 +42,34 @@ public class AppleManager {
             apple.refreshBitmap(this.context).spawn();
         }
         return this;
+    }
+
+    public List<Apple> loadApples() {
+        List<Apple> appleChoice = new ArrayList<>();
+        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
+        return appleChoice;
+    }
+
+    public List<Integer> loadChances() {
+        List<Integer> appleChance = new ArrayList<>();
+        appleChance.add(0, 90);
+        appleChance.add(1, 10);
+        return appleChance;
+    }
+
+    public Apple getRandomApple() {
+        List<Apple> appleChoice = loadApples();
+        List<Integer> appleChance = loadChances();
+
+        Apple apple = appleChoice.get(0);
+        for (Integer chance : appleChance) {
+            int random = (int) (Math.random() * 100);
+            if (random <= chance) {
+                apple = appleChoice.get(appleChance.indexOf(chance));
+            }
+        }
+        return apple;
     }
 
 }
