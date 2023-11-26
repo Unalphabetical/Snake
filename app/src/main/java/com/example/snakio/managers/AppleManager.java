@@ -6,6 +6,7 @@ import android.graphics.Point;
 import com.example.snakio.R;
 import com.example.snakio.apples.Apple;
 import com.example.snakio.apples.types.GreenApple;
+import com.example.snakio.apples.types.OrangeApple;
 import com.example.snakio.apples.types.RedApple;
 
 import java.util.ArrayList;
@@ -46,8 +47,9 @@ public class AppleManager {
 
     public List<Apple> loadApples() {
         List<Apple> appleChoice = new ArrayList<>();
-        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context).spawn());
-        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context).spawn());
+        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(2, new OrangeApple(context, sr, s, R.drawable.orangeapple).setValidity(10).refreshBitmap(context));
         return appleChoice;
     }
 
@@ -55,6 +57,7 @@ public class AppleManager {
         List<Integer> appleChance = new ArrayList<>();
         appleChance.add(0, 90);
         appleChance.add(1, 10);
+        appleChance.add(2, 5);
         return appleChance;
     }
 
@@ -74,7 +77,7 @@ public class AppleManager {
 
     public void replaceApple(Apple apple) {
         int index = appleList.indexOf(apple);
-        Apple randomApple = getRandomApple();
+        Apple randomApple = getRandomApple().spawn();
         appleList.set(index, randomApple);
     }
 

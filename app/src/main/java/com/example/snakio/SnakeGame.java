@@ -185,9 +185,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
         }
 
         //// This will be turned into a power later on.
-        if (snakeHandler.wrapAround()) {
-            System.out.println("wrap around debug");
-        }
+        snakeHandler.wrapAround();
 
         // Did the snake die?
         if (snakeHandler.detectDeath()) {

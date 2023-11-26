@@ -45,6 +45,9 @@ public class SnakeHandler {
     // A bitmap for the body
     private Bitmap mBitmapBody;
 
+    //// Wrap around variable to enable or disable wrap around
+    private boolean wrapAround = false;
+
     public SnakeHandler(Context context, Point mr, int ss) {
 
         // Initialize our new Snake
@@ -198,25 +201,23 @@ public class SnakeHandler {
     }
 
     public boolean wrapAround() {
-        List<Segments> segmentLocations = this.snake.getSegments();
-        if (segmentLocations.get(0).getX() < mMoveRange.x * 0.2) {
-            segmentLocations.get(0).setX((int) (mMoveRange.x * 0.75));
-            this.heading = Heading.LEFT;
-            return true;
-        } else if (segmentLocations.get(0).getX() > mMoveRange.x * 0.75) {
-            segmentLocations.get(0).setX((int) (mMoveRange.x * 0.2));
-            this.heading = Heading.RIGHT;
-            return true;
-        } else if (segmentLocations.get(0).getY() == -1) {
-            segmentLocations.get(0).setY(mMoveRange.y);
-            this.heading = Heading.UP;
-            return true;
-        } else if (segmentLocations.get(0).getY() > mMoveRange.y + 1) {
-            segmentLocations.get(0).setY(0);
-            this.heading = Heading.DOWN;
-            return true;
+        if (wrapAround) {
+            List<Segments> segmentLocations = this.snake.getSegments();
+            if (segmentLocations.get(0).getX() < mMoveRange.x * 0.2) {
+                segmentLocations.get(0).setX((int) (mMoveRange.x * 0.75));
+                this.heading = Heading.LEFT;
+            } else if (segmentLocations.get(0).getX() > mMoveRange.x * 0.75) {
+                segmentLocations.get(0).setX((int) (mMoveRange.x * 0.2));
+                this.heading = Heading.RIGHT;
+            } else if (segmentLocations.get(0).getY() == -1) {
+                segmentLocations.get(0).setY(mMoveRange.y);
+                this.heading = Heading.UP;
+            } else if (segmentLocations.get(0).getY() > mMoveRange.y + 1) {
+                segmentLocations.get(0).setY(0);
+                this.heading = Heading.DOWN;
+            }
         }
-        return false;
+        return wrapAround;
     }
 
     public boolean checkDinner(Point l) {
@@ -297,6 +298,10 @@ public class SnakeHandler {
 
     public void move(String direction) {
         heading = Heading.valueOf(direction.toUpperCase(Locale.ROOT));
+    }
+
+    public void setWrapAround(boolean wrapAround) {
+        this.wrapAround = wrapAround;
     }
 
 }
