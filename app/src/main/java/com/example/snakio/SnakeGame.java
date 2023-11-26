@@ -240,7 +240,8 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
                 if (gameState.isDead()) {
                     // Draw the message
-                    mCanvas.drawText("Game Over!", xPos, yPos, mPaint);
+                    mCanvas.drawText("Game Over!", xPos, yPos - 100, mPaint);
+                    mCanvas.drawText("Score: " + snakeHandler.getSnake().getScore(), xPos, yPos + 100, mPaint);
                 } else if (gameState.isPaused()) {
                     // Draw the message
                     mCanvas.drawText("Tap To Play!", xPos, yPos, mPaint);
