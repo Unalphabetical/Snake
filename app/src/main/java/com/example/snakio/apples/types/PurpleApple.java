@@ -1,0 +1,17 @@
+package com.example.snakio.apples.types;
+
+import android.content.Context;
+import android.graphics.Point;
+
+import com.example.snakio.apples.Apple;
+import com.example.snakio.snake.SnakeHandler;
+
+public class PurpleApple extends Apple {
+    
+    public PurpleApple(Context context, Point sr, int s, int apple) {
+        super(context, sr, s, apple);
+    }
+
+    // Going to add event here to give a little speed boost to the snake when eating this apple
+
+}
