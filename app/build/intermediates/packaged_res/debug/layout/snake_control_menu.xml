@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/snake_control_menu"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/placeholder"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="moveUp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="moveLeft"/>
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="moveRight"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="moveDown"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="75dp"
+            android:id="@+id/scoreText"
+            android:textSize="25dp"
+            android:text="Score: "/>
+
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="75dp"
+            android:layout_marginStart="80dp"
+            android:id="@+id/scoreValue"
+            android:textSize="25dp"
+            android:text="0"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="#00ff00"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/placeholder"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="moveUp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="moveLeft"/>
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="moveRight"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="moveDown"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/settings_icon"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:onClick="settingsMenu"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

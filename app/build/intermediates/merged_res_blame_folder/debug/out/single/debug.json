@@ -1,82 +1,110 @@
 [
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_orangeapple.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/orangeapple.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.snakio.app-main-6:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/layout_snake_settings_menu.xml.flat",
+        "source": "com.example.snakio.app-main-30:/layout/snake_settings_menu.xml"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_settings_icon.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/settings_icon.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_greenapple.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/greenapple.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.snakio.app-main-6:/xml/data_extraction_rules.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_placeholder.jpg.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/placeholder.jpg"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_body.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/body.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.snakio.app-main-6:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/drawable_body.png.flat",
-        "source": "com.example.snakio.app-main-6:/drawable/body.png"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/drawable_head.png.flat",
-        "source": "com.example.snakio.app-main-6:/drawable/head.png"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/drawable_apple.png.flat",
-        "source": "com.example.snakio.app-main-6:/drawable/apple.png"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_head.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/head.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_leftgamepad.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/leftgamepad.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_redapple.png.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/redapple.png"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/layout_snake_main_menu.xml.flat",
+        "source": "com.example.snakio.app-main-30:/layout/snake_main_menu.xml"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/xml_backup_rules.xml.flat",
-        "source": "com.example.snakio.app-main-6:/xml/backup_rules.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.snakio.app-main-6:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.snakio.app-merged_res-4:/layout_snake_main_menu.xml.flat",
-        "source": "com.example.snakio.app-main-6:/layout/snake_main_menu.xml"
+        "merged": "com.example.snakio.app-merged_res-28:/layout_snake_control_menu.xml.flat",
+        "source": "com.example.snakio.app-main-30:/layout/snake_control_menu.xml"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.snakio.app-main-30:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/xml_backup_rules.xml.flat",
+        "source": "com.example.snakio.app-main-30:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.snakio.app-main-30:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.snakio.app-merged_res-28:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.snakio.app-main-30:/mipmap-anydpi-v26/ic_launcher.xml"
     }
 ]

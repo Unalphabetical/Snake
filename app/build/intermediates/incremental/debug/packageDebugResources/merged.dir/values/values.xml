@@ -7,10 +7,17 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
-    <string name="app_name">Snak.io</string>
-    <string name="game">Snak.io</string>
+    <string name="app_name">Snake</string>
+    <string name="deleteSave">Delete Save</string>
+    <string name="disableMusic">🚫</string>
+    <string name="disableSound">🔈</string>
+    <string name="enableMusic">🎵</string>
+    <string name="enableSound">🔊</string>
+    <string name="game">Snake</string>
     <string name="leaderboard">Leaderboard</string>
+    <string name="mainMenu">Main Menu</string>
     <string name="play">Play</string>
+    <string name="resume">Resume</string>
     <string name="settings">Settings</string>
     <style name="Theme.Snakio" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         

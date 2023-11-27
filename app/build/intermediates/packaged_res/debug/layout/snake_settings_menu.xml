@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textSize="42sp"/>
+
+        <Button
+            android:id="@+id/resume_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:onClick="resumeGame"
+            android:text="@string/resume"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/music_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOn="@string/enableMusic"
+                android:textOff="@string/disableMusic"
+                android:checked="true"
+                android:onClick="toggleMusic"
+                android:textSize="24sp" />
+
+            <ToggleButton
+                android:id="@+id/sound_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOn="@string/enableSound"
+                android:textOff="@string/disableSound"
+                android:checked="false"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/menu_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mainMenu"
+            android:textSize="24sp"
+            android:onClick="mainMenu"/>
+
+        <Button
+            android:id="@+id/deletesave_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteSave"
+            android:textSize="24sp"
+            android:onClick="deleteSave"/>
+
+    </LinearLayout>
+
+</FrameLayout>
