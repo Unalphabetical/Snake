@@ -20,9 +20,11 @@ public class AppleManager {
     int s;
     List<Apple> appleList = new ArrayList<>();
 
-    public AppleManager(Context context, Point sr, int s, int appleCount) {
+    public AppleManager(Context context, Point sr, int s, int appleCount, SnakeAudio snakeAudio) {
         this.sr = sr;
         this.s = s;
+
+        this.snakeAudio = snakeAudio;
 
         this.context = context;
         for (int i = 0; i < appleCount; i++) {
@@ -82,6 +84,9 @@ public class AppleManager {
         int index = appleList.indexOf(apple);
         Apple randomApple = getRandomApple().spawn();
         appleList.set(index, randomApple);
+
+        // Paly the spawn apple sound when replacing the apple
+        snakeAudio.playSpawnAppleSound();
     }
 
 }
