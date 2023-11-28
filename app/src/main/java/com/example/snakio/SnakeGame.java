@@ -78,7 +78,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
         appleManager = new AppleManager(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
-                blockSize, appleCount);
+                blockSize, appleCount, snakeAudio);
 
         snakeHandler = new SnakeHandler(context,
                 new Point(NUM_BLOCKS_WIDE,

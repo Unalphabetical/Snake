@@ -3,6 +3,7 @@ package com.example.snakio.apples.types;
 import android.content.Context;
 import android.graphics.Point;
 
+import com.example.snakio.SnakeAudio;
 import com.example.snakio.apples.Apple;
 import com.example.snakio.snake.SnakeHandler;
 

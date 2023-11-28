@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 
+import com.example.snakio.SnakeAudio;
+
 import java.util.Random;
 
 public class Apple {
