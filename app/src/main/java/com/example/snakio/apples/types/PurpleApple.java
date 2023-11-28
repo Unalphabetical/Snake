@@ -32,4 +32,5 @@ public class PurpleApple extends Apple {
             }
         }
         return true;
+    }
 }
