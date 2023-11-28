@@ -50,6 +50,9 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
     private AppleManager appleManager;
     private int appleCount = 10;
+    
+    // Introducing fps speed for snake
+    private long TARGET_FPS;
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -95,6 +98,10 @@ public class SnakeGame extends SurfaceView implements Runnable {
         this.gameScore = gameScore;
     }
 
+    public void setSpeed(long TARGET_FPS){
+        this.TARGET_FPS = TARGET_FPS;
+    }
+
     //// Getter for the Snake Handler
     //// Handles the art, movement, etc. of the snake
     public SnakeHandler getSnakeHandler() {
@@ -132,8 +139,12 @@ public class SnakeGame extends SurfaceView implements Runnable {
     // Check to see if it is time for an update
     public boolean updateRequired() {
 
-        // Run at 10 frames per second
-        final long TARGET_FPS = 10;
+        // Removed this to turn target_fps into a field and utilize it in occurences for speed boosts, etc. 
+        /*   Runs at 10 frames per second
+         final long TARGET_FPS = 10;
+         */
+
+
         // There are 1000 milliseconds in a second
         final long MILLIS_PER_SECOND = 1000;
 
