@@ -14,9 +14,11 @@ Refactor and redesign the Snake game in [Chapter 17](https://github.com/PacktPub
 - Multiple apples
     - Green
     - Orange
+    - Purple
 - Powerups
     - Decrease size and score
     - Wrap around
+    - 2x Speed
 - More to come
 
 ## Tech Stack
