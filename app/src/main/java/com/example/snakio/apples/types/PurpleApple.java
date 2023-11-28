@@ -4,9 +4,12 @@ import android.content.Context;
 import android.graphics.Point;
 
 import com.example.snakio.apples.Apple;
-import com.example.snakio.snake.SnakeHandler;
+import com.example.snakio.SnakeGame;
 
-public class PurpleApple extends Apple {
+import java.util.Timer;
+import java.util.TimerTask;
+
+ public class PurpleApple extends Apple {
     
     public PurpleApple(Context context, Point sr, int s, int apple) {
         super(context, sr, s, apple);
@@ -34,3 +37,4 @@ public class PurpleApple extends Apple {
         return true;
     }
 }
+

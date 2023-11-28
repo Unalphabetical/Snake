@@ -52,7 +52,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
     private int appleCount = 10;
     
     // Introducing fps speed for snake
-    private long TARGET_FPS;
+    private long TARGET_FPS = 10;
 
     // This is the constructor method that gets called
     // from SnakeActivity
