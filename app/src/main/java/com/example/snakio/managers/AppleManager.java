@@ -59,8 +59,8 @@ public class AppleManager {
         List<Integer> appleChance = new ArrayList<>();
         appleChance.add(0, 900);
         appleChance.add(1, 100);
-        appleChance.add(2, 75);
-        appleChance.add(3,50);
+        appleChance.add(2, 50);
+        appleChance.add(3, 50);
         return appleChance;
     }
 
