@@ -19,6 +19,7 @@ public class SnakeAudio {
     private SoundPool mSP;
     private int mEat_ID = -1;
     private int mCrashID = -1;
+    private int mSpawnAppleID = -1;
 
     public boolean isMusicEnabled;
 
@@ -78,6 +79,9 @@ public class SnakeAudio {
 
                 descriptor = assetManager.openFd("snake_death.ogg");
                 mCrashID = mSP.load(descriptor, 0);
+
+                descriptor = assetManager.openFd("spawn_apple.ogg");
+                mSpawnAppleID = mSP.load(descriptor, 0);
             } catch (IOException e) {
                 //Handle errors loading other sounds
             }
@@ -92,6 +96,10 @@ public class SnakeAudio {
 
     public void playCrashSound() {
         mSP.play(mCrashID, 1, 1, 0, 0, 1);
+    }
+
+    public void playSpawnAppleSound() {
+        mSP.play(mSpawnAppleID, 1, 1, 0, 0, 1);
     }
 
     // Background music methods

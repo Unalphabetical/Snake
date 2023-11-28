@@ -11,7 +11,7 @@ import java.util.TimerTask;
 
  public class PurpleApple extends Apple {
     
-    public PurpleApple(Context context, Point sr, int s, int apple) {
+    public PurpleApple(Context context, Point sr, int s, int apple, SnakeAudio snakeAudio) {
         super(context, sr, s, apple);
     }
 

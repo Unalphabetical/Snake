@@ -7,7 +7,7 @@ import com.example.snakio.apples.Apple;
 
 public class RedApple extends Apple {
 
-    public RedApple(Context context, Point sr, int s, int apple) {
+    public RedApple(Context context, Point sr, int s, int apple, SnakeAudio snakeAudio) {
         super(context, sr, s, apple);
     }
 
