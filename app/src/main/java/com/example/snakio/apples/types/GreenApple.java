@@ -8,7 +8,7 @@ import com.example.snakio.snake.Snake;
 
 public class GreenApple extends Apple {
     public GreenApple(Context context, Point sr, int s, int apple, SnakeAudio snakeAudio) {
-        super(context, sr, s, apple);
+        super(context, sr, s, apple, snakeAudio);
     }
 
     @Override
