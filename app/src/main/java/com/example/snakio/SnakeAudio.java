@@ -91,7 +91,7 @@ public class SnakeAudio {
     }
 
     public void playEatSound() {
-        mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+        mSP.play(mEat_ID, 0.1F, 0.1F, 0, 0, 1);
     }
 
     public void playCrashSound() {

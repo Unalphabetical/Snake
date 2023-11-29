@@ -78,7 +78,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
         appleManager = new AppleManager(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
-                blockSize, appleCount, snakeAudio);
+                blockSize, appleCount);
 
         snakeHandler = new SnakeHandler(context,
                 new Point(NUM_BLOCKS_WIDE,
@@ -186,6 +186,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
                 //// Allow a new apple type to be spawned
                 appleManager.replaceApple(apple);
+                snakeAudio.playSpawnAppleSound();
 
                 // Add to the score of the snake
                 snakeHandler.getSnake().setScore(snakeHandler.getSnake().getScore() + 1);

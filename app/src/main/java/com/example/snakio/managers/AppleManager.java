@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Point;
 
 import com.example.snakio.R;
-import com.example.snakio.SnakeAudio;
 import com.example.snakio.apples.Apple;
 import com.example.snakio.apples.types.GreenApple;
 import com.example.snakio.apples.types.OrangeApple;
@@ -21,13 +20,9 @@ public class AppleManager {
     int s;
     List<Apple> appleList = new ArrayList<>();
 
-    SnakeAudio snakeAudio;
-
-    public AppleManager(Context context, Point sr, int s, int appleCount, SnakeAudio snakeAudio) {
+    public AppleManager(Context context, Point sr, int s, int appleCount) {
         this.sr = sr;
         this.s = s;
-
-        this.snakeAudio = snakeAudio;
 
         this.context = context;
         for (int i = 0; i < appleCount; i++) {
@@ -53,10 +48,10 @@ public class AppleManager {
 
     public List<Apple> loadApples() {
         List<Apple> appleChoice = new ArrayList<>();
-        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple, snakeAudio).setValidity(10).refreshBitmap(context));
-        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple, snakeAudio).setValidity(10).refreshBitmap(context));
-        appleChoice.add(2, new OrangeApple(context, sr, s, R.drawable.orangeapple, snakeAudio).setValidity(10).refreshBitmap(context));
-        appleChoice.add(3, new PurpleApple(context, sr, s, R.drawable.purpleapple, snakeAudio).setValidity(10).refreshBitmap(context));
+        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(2, new OrangeApple(context, sr, s, R.drawable.orangeapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(3, new PurpleApple(context, sr, s, R.drawable.purpleapple).setValidity(10).refreshBitmap(context));
         return appleChoice;
     }
 
@@ -88,8 +83,6 @@ public class AppleManager {
         Apple randomApple = getRandomApple().spawn();
         appleList.set(index, randomApple);
 
-        // Paly the spawn apple sound when replacing the apple
-        snakeAudio.playSpawnAppleSound();
     }
 
 }

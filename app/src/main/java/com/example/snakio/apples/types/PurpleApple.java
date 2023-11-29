@@ -3,17 +3,16 @@ package com.example.snakio.apples.types;
 import android.content.Context;
 import android.graphics.Point;
 
-import com.example.snakio.SnakeAudio;
-import com.example.snakio.apples.Apple;
 import com.example.snakio.SnakeGame;
+import com.example.snakio.apples.Apple;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
  public class PurpleApple extends Apple {
     
-    public PurpleApple(Context context, Point sr, int s, int apple, SnakeAudio snakeAudio) {
-        super(context, sr, s, apple, snakeAudio);
+    public PurpleApple(Context context, Point sr, int s, int apple) {
+        super(context, sr, s, apple);
     }
 
     // Going to add event here to give a little speed boost to the snake when eating this apple

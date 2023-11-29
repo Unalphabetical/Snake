@@ -7,8 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-import com.example.snakio.SnakeAudio;
-
 import java.util.Random;
 
 public class Apple {
@@ -25,16 +23,13 @@ public class Apple {
     // An image to represent the apple
     private Bitmap mBitmapApple;
 
-    // Add a reference to SnakeAudio instance
-    private SnakeAudio snakeAudio;
-
     int apple;
 
     private long expireDuration;
     private long expireTime;
 
     /// Set up the apple in the constructor
-    public Apple(Context context, Point sr, int s, int apple, SnakeAudio snakeAudio){
+    public Apple(Context context, Point sr, int s, int apple){
 
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
@@ -47,8 +42,6 @@ public class Apple {
 
         //// Make a note of the apple to refresh the bitmap
         this.apple = apple;
-
-        this.snakeAudio = snakeAudio;
 
         refreshBitmap(context);
 
@@ -70,7 +63,6 @@ public class Apple {
         Random random = new Random();
         location.x = (int) (random.nextInt((int) (mSpawnRange.x * 0.5)) + (mSpawnRange.x * 0.25));
         location.y = random.nextInt(mSpawnRange.y - 2) + 1;
-        snakeAudio.playSpawnAppleSound();
         return this;
     }
 
