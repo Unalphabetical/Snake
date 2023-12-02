@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.snakio.apples.Apple;
 import com.example.snakio.managers.AppleManager;
+import com.example.snakio.managers.LeaderboardManager;
 import com.example.snakio.managers.SaveManager;
 import com.example.snakio.snake.SnakeHandler;
 import com.example.snakio.states.GameState;
@@ -54,6 +55,9 @@ public class SnakeGame extends SurfaceView implements Runnable {
     // Introducing fps speed for snake
     private long TARGET_FPS = 10;
 
+    // Leaderboard manager
+    private LeaderboardManager leaderboardManager;
+
     // This is the constructor method that gets called
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
@@ -87,6 +91,9 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
         //// Initialize the save manager
         saveManager = new SaveManager(context);
+
+        //// Initialize the leaderboard manager
+        leaderboardManager = new LeaderboardManager(context);
     }
 
     public SnakeGame(SnakeActivity context, Point size, View viewById) {
@@ -204,6 +211,9 @@ public class SnakeGame extends SurfaceView implements Runnable {
             // Pause the game ready to start again, play crash sound
             snakeAudio.playCrashSound();
 
+            // Save the score to the leaderboard
+            this.leaderboardManager.addSnake(snakeHandler.getSnake());
+
             gameState.setPaused(true);
             gameState.setDead(true);
         }
@@ -267,7 +277,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+        switch (motionEvent.getActionMasked() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_UP:
                 if (gameState.isPaused() || gameState.isDead()) {
                     gameState.setPaused(false);
@@ -298,6 +308,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
                 .setHeading(String.valueOf(snakeHandler.getHeading()))
                 .setAppleList(appleManager.getAppleList())
                 .save();
+        this.leaderboardManager.saveSnakeList();
 
         try {
             mThread.join();
@@ -315,6 +326,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
             this.gameState = saveManager.getGameState();
             this.snakeHandler.move(saveManager.getHeading());
             this.appleManager.setAppleList(saveManager.getAppleList());
+            this.leaderboardManager.loadSnakeList();
         }
         gameState.setPlaying(true);
 

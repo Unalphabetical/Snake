@@ -40,4 +40,9 @@ public class SnakeMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void leaderboardMenu(View v){
+        Intent intent = new Intent(this, SnakeLeaderboardMenuActivity.class);
+        startActivity(intent);
+    }
+
 }

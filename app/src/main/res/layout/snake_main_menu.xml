@@ -24,7 +24,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/leaderboard"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:onClick="leaderboardMenu"/>
 
     <Button
         android:id="@+id/settings_button"

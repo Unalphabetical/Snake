@@ -7,6 +7,7 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.snakio.managers.LeaderboardManager;
 import com.example.snakio.managers.SaveManager;
 
 public class SnakeSettingsActivity extends AppCompatActivity {
@@ -59,7 +60,11 @@ public class SnakeSettingsActivity extends AppCompatActivity {
     public void deleteSave(View v) {
         SaveManager saveManager = new SaveManager(this);
         saveManager.deleteData();
-        resumeGame(v);
+    }
+
+    public void deleteLeaderboard(View v) {
+        LeaderboardManager leaderboardManager = new LeaderboardManager(this);
+        leaderboardManager.deleteData();
     }
 
 }

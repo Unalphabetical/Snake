@@ -72,6 +72,14 @@
             android:textSize="24sp"
             android:onClick="deleteSave"/>
 
+        <Button
+            android:id="@+id/deleteleaderboard_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteLeaderboard"
+            android:textSize="24sp"
+            android:onClick="deleteLeaderboard"/>
+
     </LinearLayout>
 
 </FrameLayout>

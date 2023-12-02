@@ -11,4 +11,6 @@
     <string name="enableMusic">🎵</string>
     <string name="deleteSave">Delete Save</string>
     <string name="mainMenu">Main Menu</string>
+    <string name="null_text" />
+    <string name="deleteLeaderboard">Delete Leaderboard</string>
 </resources>
