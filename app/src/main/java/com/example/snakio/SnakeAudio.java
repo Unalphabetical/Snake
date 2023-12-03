@@ -8,15 +8,18 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Environment;
+import android.util.Log;
 
 import com.example.snakio.managers.SaveManager;
 
+import java.io.File;
 import java.io.IOException;
 
 public class SnakeAudio {
 
     private Context context;
-    private SoundPool mSP;
+    private SoundPoolHelper soundPoolHelper;
     private int mEat_ID = -1;
     private int mCrashID = -1;
     private int mSpawnAppleID = -1;
@@ -32,23 +35,15 @@ public class SnakeAudio {
     private SaveManager saveManager;
 
     public SnakeAudio(Context context) {
+
         this.context = context;
-        saveManager = new SaveManager(context);
+        this.saveManager = new SaveManager(context);
 
-        // Initialize the SoundPool
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
+        this.soundPoolHelper = new SoundPoolHelper(2, AudioManager.STREAM_MUSIC, 0, context);
 
-            mSP = new SoundPool.Builder()
-                    .setMaxStreams(5)
-                    .setAudioAttributes(audioAttributes)
-                    .build();
-        } else {
-            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-        }
+        this.mEat_ID = soundPoolHelper.load(context, R.raw.get_apple, 1);
+        this.mCrashID = soundPoolHelper.load(context, R.raw.snake_death, 1);
+        this.mSpawnAppleID = soundPoolHelper.load(context, R.raw.spawn_apple, 1);
 
         // Initialize MediaPlayer for background music
         if (mediaPlayer == null) {
@@ -70,46 +65,27 @@ public class SnakeAudio {
             if (!mediaPlayer.isPlaying()) {
                 playBackgroundMusic();
             }
-
-            // Load other sounds
-            try {
-                AssetManager assetManager = context.getAssets();
-                AssetFileDescriptor descriptor;
-
-                descriptor = assetManager.openFd("get_apple.ogg");
-                mEat_ID = mSP.load(descriptor, 0);
-
-                descriptor = assetManager.openFd("snake_death.ogg");
-                mCrashID = mSP.load(descriptor, 0);
-
-                descriptor = assetManager.openFd("spawn_apple.ogg");
-                mSpawnAppleID = mSP.load(descriptor, 0);
-            } catch (IOException e) {
-                //Handle errors loading other sounds
-            }
         } catch (IOException e) {
-            //Handle errors loading background music
+            e.printStackTrace();
         }
+
     }
 
     public void playEatSound() {
-        isSoundEnabled = saveManager.isSoundEnabled();
-        if(isSoundEnabled) {
-            mSP.play(mEat_ID, 0.1F, 0.1F, 0, 0, 1);
+        if (saveManager.isSoundEnabled()) {
+            soundPoolHelper.play(mEat_ID, 0.1F, 0.1F);
         }
     }
 
     public void playCrashSound() {
-        isSoundEnabled = saveManager.isSoundEnabled();
-        if(isSoundEnabled) {
-            mSP.play(mCrashID, 1, 1, 0, 0, 1);
+        if (saveManager.isSoundEnabled()) {
+            soundPoolHelper.play(mCrashID);
         }
     }
 
     public void playSpawnAppleSound() {
-        isSoundEnabled = saveManager.isSoundEnabled();
-        if(isSoundEnabled) {
-            mSP.play(mSpawnAppleID, 1, 1, 0, 0, 1);
+        if (saveManager.isSoundEnabled()) {
+            soundPoolHelper.play(mSpawnAppleID);
         }
     }
 
@@ -135,4 +111,3 @@ public class SnakeAudio {
     }
 
 }
-

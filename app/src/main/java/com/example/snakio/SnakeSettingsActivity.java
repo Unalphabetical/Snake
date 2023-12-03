@@ -52,9 +52,9 @@ public class SnakeSettingsActivity extends AppCompatActivity {
     }
 
     public void toggleSound(View v){
-        if(soundButton.isChecked()){
+        if (soundButton.isChecked()){
             saveManager.setSoundEnabled(true);
-        }else{
+        } else {
             saveManager.setSoundEnabled(false);
         }
     }

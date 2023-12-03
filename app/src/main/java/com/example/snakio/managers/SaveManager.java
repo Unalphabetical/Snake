@@ -144,6 +144,7 @@ public class SaveManager {
         this.saveHeadingData();
         this.saveAppleData();
         this.setMusicEnabled(this.isMusicEnabled());
+        this.setSoundEnabled(this.isSoundEnabled());
     }
 
     public void load() {
