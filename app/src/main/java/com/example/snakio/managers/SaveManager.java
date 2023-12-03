@@ -117,9 +117,6 @@ public class SaveManager {
         return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
     }
 
-
-
-    //Add setSoundEnabled and isSoundEnabled methods
     public SaveManager setSoundEnabled(boolean soundEnabled){
         prefs.edit().putBoolean(SOUND_ENABLED_KEY, soundEnabled).apply();
         return this;

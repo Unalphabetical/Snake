@@ -23,6 +23,8 @@ public class SnakeAudio {
 
     public boolean isMusicEnabled;
 
+    public boolean isSoundEnabled;
+
     //// Added MediaPlayer for background music
     private MediaPlayer mediaPlayer;
 
@@ -90,18 +92,25 @@ public class SnakeAudio {
         }
     }
 
-
-    //ADD BOOLEAN VALUE TO CHECK IF SOUND IS ENABLED FIRST, THEN PLAY SOUND
     public void playEatSound() {
-        mSP.play(mEat_ID, 0.1F, 0.1F, 0, 0, 1);
+        isSoundEnabled = saveManager.isSoundEnabled();
+        if(isSoundEnabled) {
+            mSP.play(mEat_ID, 0.1F, 0.1F, 0, 0, 1);
+        }
     }
 
     public void playCrashSound() {
-        mSP.play(mCrashID, 1, 1, 0, 0, 1);
+        isSoundEnabled = saveManager.isSoundEnabled();
+        if(isSoundEnabled) {
+            mSP.play(mCrashID, 1, 1, 0, 0, 1);
+        }
     }
 
     public void playSpawnAppleSound() {
-        mSP.play(mSpawnAppleID, 1, 1, 0, 0, 1);
+        isSoundEnabled = saveManager.isSoundEnabled();
+        if(isSoundEnabled) {
+            mSP.play(mSpawnAppleID, 1, 1, 0, 0, 1);
+        }
     }
 
     // Background music methods
