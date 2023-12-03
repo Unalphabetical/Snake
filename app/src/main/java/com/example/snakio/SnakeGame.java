@@ -2,7 +2,6 @@ package com.example.snakio;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
@@ -15,6 +14,7 @@ import com.example.snakio.apples.Apple;
 import com.example.snakio.managers.AppleManager;
 import com.example.snakio.managers.LeaderboardManager;
 import com.example.snakio.managers.SaveManager;
+import com.example.snakio.snake.SnakeCanvas;
 import com.example.snakio.snake.SnakeHandler;
 import com.example.snakio.states.GameState;
 
@@ -34,9 +34,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
     private int mNumBlocksHigh;
 
     // Objects for drawing
-    private Canvas mCanvas;
-    private SurfaceHolder mSurfaceHolder;
-    private Paint mPaint;
+    private SnakeCanvas snakeCanvas;
 
     // A snake ssss
     private SnakeHandler snakeHandler;
@@ -75,8 +73,9 @@ public class SnakeGame extends SurfaceView implements Runnable {
         mNumBlocksHigh = size.y / blockSize;
 
         // Initialize the drawing objects
-        mSurfaceHolder = getHolder();
-        mPaint = new Paint();
+        SurfaceHolder mSurfaceHolder = getHolder();
+        Paint mPaint = new Paint();
+        snakeCanvas = new SnakeCanvas(mSurfaceHolder, mPaint);
 
         // Call the constructors of our two game objects
         appleManager = new AppleManager(context,
@@ -96,23 +95,22 @@ public class SnakeGame extends SurfaceView implements Runnable {
         leaderboardManager = new LeaderboardManager(context);
     }
 
+    //// Constructor for the Game Score text view
     public SnakeGame(SnakeActivity context, Point size, View viewById) {
         this(context, size);
-        this.setGameScore((TextView) viewById);
-    }
-
-    public void setGameScore(TextView gameScore) {
-        this.gameScore = gameScore;
-    }
-
-    public void setSpeed(long TARGET_FPS){
-        this.TARGET_FPS = TARGET_FPS;
+        this.gameScore = (TextView) viewById;
     }
 
     //// Getter for the Snake Handler
     //// Handles the art, movement, etc. of the snake
     public SnakeHandler getSnakeHandler() {
         return snakeHandler;
+    }
+
+    //// Setter for the Game's FPS speed
+    //// allowing us to control how fast or slow the snake moves
+    public void setSpeed(long TARGET_FPS){
+        this.TARGET_FPS = TARGET_FPS;
     }
 
     // Called to start a new game
@@ -146,12 +144,6 @@ public class SnakeGame extends SurfaceView implements Runnable {
     // Check to see if it is time for an update
     public boolean updateRequired() {
 
-        // Removed this to turn target_fps into a field and utilize it in occurences for speed boosts, etc. 
-        /*   Runs at 10 frames per second
-         final long TARGET_FPS = 10;
-         */
-
-
         // There are 1000 milliseconds in a second
         final long MILLIS_PER_SECOND = 1000;
 
@@ -160,7 +152,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
             // Tenth of a second has passed
 
             // Setup when the next update will be triggered
-            mNextFrameTime =System.currentTimeMillis()
+            mNextFrameTime = System.currentTimeMillis()
                     + MILLIS_PER_SECOND / TARGET_FPS;
 
             // Return true so that the update and draw
@@ -224,54 +216,26 @@ public class SnakeGame extends SurfaceView implements Runnable {
     public void draw() {
 
         // Get a lock on the mCanvas
-        if (mSurfaceHolder.getSurface().isValid()) {
-            mCanvas = mSurfaceHolder.lockCanvas();
+        if (snakeCanvas.lock()) {
+            Canvas canvas = snakeCanvas.getCanvas();
+            Paint paint = snakeCanvas.getPaint();
+            int score = snakeHandler.getSnake().getScore();
 
-            // Fill the screen with a color
-            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
-
-            // Set the size and color of the mPaint for the text
-            mPaint.setColor(Color.argb(255, 255, 255, 255));
-            mPaint.setTextSize(120);
-
-            // Draw the score
-            if (gameScore != null) {
-                gameScore.setText(String.valueOf(snakeHandler.getSnake().getScore()));
-                gameScore.invalidate();
-            }
-
-            // Draw the apple and the snake
             for (Apple apple : appleManager.getAppleList()) {
-                apple.refreshBitmap(getContext()).draw(mCanvas, mPaint);
+                apple.refreshBitmap(getContext()).draw(canvas, paint);
             }
 
-            snakeHandler.draw(mCanvas, mPaint);
+            snakeHandler.draw(canvas, paint);
 
-            // Draw some text while paused
-            if (gameState.isPaused() || gameState.isDead()){
-
-                // Set the size and color of the mPaint for the text
-                mPaint.setColor(Color.argb(255, 255, 255, 255));
-                mPaint.setTextSize(200);
-                mPaint.setTextAlign(Paint.Align.CENTER);
-
-                //// Calculate the middle of the screen
-                //// with the font size included
-                int xPos = (mCanvas.getWidth() / 2);
-                int yPos = (int) ((mCanvas.getHeight() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2));
-
-                if (gameState.isDead()) {
-                    // Draw the message
-                    mCanvas.drawText("Game Over!", xPos, yPos - 100, mPaint);
-                    mCanvas.drawText("Score: " + snakeHandler.getSnake().getScore(), xPos, yPos + 100, mPaint);
-                } else if (gameState.isPaused()) {
-                    // Draw the message
-                    mCanvas.drawText("Tap To Play!", xPos, yPos, mPaint);
-                }
+            if (gameState.isDead()) {
+                //// Draw game over message
+                snakeCanvas.drawGameOver(score);
+            } else if (gameState.isPaused()) {
+                // Draw the message
+                snakeCanvas.drawTapToPlay();
             }
 
-            // Unlock the mCanvas and reveal the graphics for this frame
-            mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+            snakeCanvas.unlock();
         }
     }
 
