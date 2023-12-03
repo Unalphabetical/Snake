@@ -205,6 +205,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
             // Save the score to the leaderboard
             this.leaderboardManager.addSnake(snakeHandler.getSnake());
+            this.leaderboardManager.saveSnakeList();
 
             gameState.setPaused(true);
             gameState.setDead(true);
