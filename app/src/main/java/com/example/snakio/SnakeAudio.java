@@ -1,20 +1,10 @@
 package com.example.snakio;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
-import android.os.Environment;
-import android.util.Log;
 
 import com.example.snakio.managers.SaveManager;
-
-import java.io.File;
-import java.io.IOException;
 
 public class SnakeAudio {
 
@@ -46,27 +36,16 @@ public class SnakeAudio {
         this.mSpawnAppleID = soundPoolHelper.load(context, R.raw.spawn_apple, 1);
 
         // Initialize MediaPlayer for background music
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        } else {
+        if (mediaPlayer != null) {
             mediaPlayer.release();
-            mediaPlayer = new MediaPlayer();
         }
+        mediaPlayer = MediaPlayer.create(context, R.raw.background_music);
 
-        try {
-            AssetFileDescriptor afd = context.getAssets().openFd("background_music.ogg");
-            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.prepare();
-            mediaPlayer.setVolume(1f, 1f);
-            mediaPlayer.setLooping(true);
+        mediaPlayer.setVolume(1f, 1f);
+        mediaPlayer.setLooping(true);
 
-            if (!mediaPlayer.isPlaying()) {
-                playBackgroundMusic();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!mediaPlayer.isPlaying()) {
+            playBackgroundMusic();
         }
 
     }
