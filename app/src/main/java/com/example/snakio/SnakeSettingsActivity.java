@@ -34,6 +34,9 @@ public class SnakeSettingsActivity extends AppCompatActivity {
         // Update the UI to reflect the current music state
         musicButton = findViewById(R.id.music_button);
         musicButton.setChecked(saveManager.isMusicEnabled());
+
+        //Update the UI to reflect current sound state
+
     }
 
 

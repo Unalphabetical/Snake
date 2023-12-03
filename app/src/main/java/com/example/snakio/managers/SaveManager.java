@@ -116,6 +116,10 @@ public class SaveManager {
         return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
     }
 
+
+
+    //Add setSoundEnabled and isSoundEnabled methods
+
     public boolean hasData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         String gameStateData = this.prefs.getString("gameStateData", "null");

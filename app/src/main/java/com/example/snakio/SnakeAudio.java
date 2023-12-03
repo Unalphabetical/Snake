@@ -90,6 +90,8 @@ public class SnakeAudio {
         }
     }
 
+
+    //ADD BOOLEAN VALUE TO CHECK IF SOUND IS ENABLED FIRST, THEN PLAY SOUND
     public void playEatSound() {
         mSP.play(mEat_ID, 0.1F, 0.1F, 0, 0, 1);
     }
