@@ -26,6 +26,7 @@ public class SaveManager {
     List<Apple> appleList;
 
     private static final String MUSIC_ENABLED_KEY = "musicEnabled";
+    private static final String SOUND_ENABLED_KEY = "soundEnabled";
 
     public SaveManager(Context context) {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -119,6 +120,14 @@ public class SaveManager {
 
 
     //Add setSoundEnabled and isSoundEnabled methods
+    public SaveManager setSoundEnabled(boolean soundEnabled){
+        prefs.edit().putBoolean(SOUND_ENABLED_KEY, soundEnabled).apply();
+        return this;
+    }
+
+    public boolean isSoundEnabled(){
+        return prefs.getBoolean(SOUND_ENABLED_KEY, true);
+    }
 
     public boolean hasData() {
         String snakeData = this.prefs.getString("snakeData", "null");

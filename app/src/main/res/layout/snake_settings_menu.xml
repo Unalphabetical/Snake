@@ -49,9 +49,10 @@
                 android:id="@+id/sound_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textOn="@string/enableSound"
+                android:checked="true"
                 android:textOff="@string/disableSound"
-                android:checked="false"
+                android:textOn="@string/enableSound"
+                android:onClick="toggleSound"
                 android:textSize="24sp" />
 
         </LinearLayout>

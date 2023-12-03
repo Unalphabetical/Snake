@@ -15,7 +15,7 @@ public class SnakeSettingsActivity extends AppCompatActivity {
     private ToggleButton musicButton;
     private SaveManager saveManager;
 
-
+    private ToggleButton soundButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,8 @@ public class SnakeSettingsActivity extends AppCompatActivity {
         musicButton.setChecked(saveManager.isMusicEnabled());
 
         //Update the UI to reflect current sound state
-
+        soundButton = findViewById(R.id.sound_button);
+        soundButton.setChecked(saveManager.isSoundEnabled());
     }
 
 
@@ -48,6 +49,14 @@ public class SnakeSettingsActivity extends AppCompatActivity {
             saveManager.setMusicEnabled(false);
         }
 
+    }
+
+    public void toggleSound(View v){
+        if(soundButton.isChecked()){
+            saveManager.setSoundEnabled(true);
+        }else{
+            saveManager.setSoundEnabled(false);
+        }
     }
 
     public void resumeGame(View v) {
