@@ -33,6 +33,10 @@ public class LeaderboardManager {
         return snakeList;
     }
 
+    public void deleteData() {
+        this.prefs.edit().clear().apply();
+    }
+
     public void saveSnakeList() {
         String snakeLeaderboardData = gson.toJson(snakeList);
         this.prefs.edit().putString(LEADERBOARD_KEY, snakeLeaderboardData).apply();
@@ -82,10 +86,6 @@ public class LeaderboardManager {
             if (snakeList.get(i) == null) continue;
             System.out.println(i + 1 + ". " + snakeList.get(i).getScore());
         }
-    }
-
-    public void deleteData() {
-        this.prefs.edit().clear().apply();
     }
 
 }

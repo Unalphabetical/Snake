@@ -28,18 +28,19 @@ public class SnakeMenuActivity extends AppCompatActivity {
         setContentView(R.layout.snake_main_menu);
     }
 
-    //// The click event for the "Play" button
+    //// The click event moves us from the main menu to the game
     public void startGame(View v){
         Intent intent = new Intent(this, SnakeActivity.class);
         startActivity(intent);
     }
 
-    //// The click event for the "Settings" button
+    //// This click event moves us from the main menu to the settings menu
     public void settingsMenu(View v){
         Intent intent = new Intent(this, SnakeSettingsActivity.class);
         startActivity(intent);
     }
 
+    //// This click event moves us from the main menu to the leaderboard menu
     public void leaderboardMenu(View v){
         Intent intent = new Intent(this, SnakeLeaderboardMenuActivity.class);
         startActivity(intent);

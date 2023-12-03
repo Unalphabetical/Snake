@@ -11,6 +11,7 @@ public class GreenApple extends Apple {
         super(context, sr, s, apple);
     }
 
+    //// The snake restarts
     @Override
     public boolean onEaten(Object... object) {
         for (Object o : object) {

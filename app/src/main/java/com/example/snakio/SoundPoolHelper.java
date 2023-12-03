@@ -1,11 +1,11 @@
 package com.example.snakio;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SoundPoolHelper extends SoundPool {
     private Set<Integer> mLoaded;
@@ -22,6 +22,7 @@ public class SoundPoolHelper extends SoundPool {
         setOnLoadCompleteListener((soundPool, sampleId, status) -> mLoaded.add(sampleId));
     }
 
+    //// This method is used to play sounds with the max volume
     public void play(int soundID) {
         AudioManager audioManager = (AudioManager) mContext.getSystemService( Context.AUDIO_SERVICE);
         float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -34,6 +35,7 @@ public class SoundPoolHelper extends SoundPool {
         }
     }
 
+    //// This method is used to play sounds with a custom volume
     public void play(int soundID, float leftVolume, float rightVolume) {
         if (mLoaded.contains(soundID)) {
             play(soundID, leftVolume, rightVolume, 1, 0, 1f);

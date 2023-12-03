@@ -63,6 +63,7 @@ public class SnakeActivity extends Activity {
         setContentView(relativeLayout);
     }
 
+    //// The following methods are the click events for the control menu
     public void moveLeft(View view) {
         this.mSnakeGame.getSnakeHandler().move("Left");
     }

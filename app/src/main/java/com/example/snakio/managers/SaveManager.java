@@ -93,6 +93,11 @@ public class SaveManager {
         return this;
     }
 
+    public SaveManager setSoundEnabled(boolean soundEnabled){
+        prefs.edit().putBoolean(SOUND_ENABLED_KEY, soundEnabled).apply();
+        return this;
+    }
+
     public void loadSnakeData() {
         String snakeData = this.prefs.getString("snakeData", "null");
         this.snake = this.gson.fromJson(snakeData, Snake.class);
@@ -115,11 +120,6 @@ public class SaveManager {
 
     public boolean isMusicEnabled() {
         return prefs.getBoolean(MUSIC_ENABLED_KEY, true);
-    }
-
-    public SaveManager setSoundEnabled(boolean soundEnabled){
-        prefs.edit().putBoolean(SOUND_ENABLED_KEY, soundEnabled).apply();
-        return this;
     }
 
     public boolean isSoundEnabled(){

@@ -90,10 +90,13 @@ public class Apple {
         return this;
     }
 
+    //// Checks whether the apple is expired or not
     public boolean isExpired() {
         return System.currentTimeMillis() >= this.expireTime;
     }
 
+    //// This event is called when a snake eats an apple
+    //// allowing us to make the Apples have powerups
     public boolean onEaten(Object... objects) {
         return false;
     }

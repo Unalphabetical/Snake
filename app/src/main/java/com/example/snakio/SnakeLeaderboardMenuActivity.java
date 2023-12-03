@@ -39,6 +39,7 @@ public class SnakeLeaderboardMenuActivity extends AppCompatActivity {
         }
     }
 
+    //// This click event moves us from the leaderboard menu to the main menu
     public void mainMenu(View v) {
         Intent intent = new Intent(this, SnakeMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

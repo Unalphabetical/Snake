@@ -107,6 +107,12 @@ public class SnakeGame extends SurfaceView implements Runnable {
         return snakeHandler;
     }
 
+    //// This returns all the objects needed for the power up events
+    //// So we can manipulate the game, snake handler, or snake itself
+    public Object[] getObjects() {
+        return new Object[]{this, this.snakeHandler, this.snakeHandler.getSnake()};
+    }
+
     //// Setter for the Game's FPS speed
     //// allowing us to control how fast or slow the snake moves
     public void setSpeed(long TARGET_FPS){
@@ -266,6 +272,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
     }
 
     // Stop the thread
+    //// And save all the required data for the game
     public void pause() {
         gameState.setPlaying(false);
         this.saveManager.setSnake(snakeHandler.getSnake())
@@ -284,6 +291,7 @@ public class SnakeGame extends SurfaceView implements Runnable {
     }
 
     // Start the thread
+    //// And load all the required data for the game
     public void resume() {
         if (this.saveManager.hasData()) {
             this.saveManager.load();
@@ -298,12 +306,6 @@ public class SnakeGame extends SurfaceView implements Runnable {
         mThread = new Thread(this);
         mThread.start();
         //if (snakeAudio.isBackgroundMusicPaused()) snakeAudio.playBackgroundMusic();
-    }
-
-    //// This returns all the objects needed for the power up events
-    //// So we can manipulate the game, snake handler, or snake itself
-    public Object[] getObjects() {
-        return new Object[]{this, this.snakeHandler, this.snakeHandler.getSnake()};
     }
 
 }

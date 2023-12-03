@@ -39,6 +39,20 @@ public class AppleManager {
         this.appleList = appleList;
     }
 
+    public Apple getRandomApple() {
+        List<Apple> appleChoice = loadApples();
+        List<Integer> appleChance = loadChances();
+
+        Apple apple = appleChoice.get(0);
+        for (Integer chance : appleChance) {
+            int random = (int) (Math.random() * 1000);
+            if (random <= chance) {
+                apple = appleChoice.get(appleChance.indexOf(chance));
+            }
+        }
+        return apple;
+    }
+
     public AppleManager spawnApple() {
         for (Apple apple : appleList) {
             apple.refreshBitmap(this.context).spawn();
@@ -62,20 +76,6 @@ public class AppleManager {
         appleChance.add(2, 75);
         appleChance.add(3, 50);
         return appleChance;
-    }
-
-    public Apple getRandomApple() {
-        List<Apple> appleChoice = loadApples();
-        List<Integer> appleChance = loadChances();
-
-        Apple apple = appleChoice.get(0);
-        for (Integer chance : appleChance) {
-            int random = (int) (Math.random() * 1000);
-            if (random <= chance) {
-                apple = appleChoice.get(appleChance.indexOf(chance));
-            }
-        }
-        return apple;
     }
 
     public void replaceApple(Apple apple) {

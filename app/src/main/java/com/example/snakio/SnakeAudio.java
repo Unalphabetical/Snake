@@ -81,10 +81,12 @@ public class SnakeAudio {
 
     }
 
+    //// This method pauses the background music
     public void pauseBackgroundMusic() {
         mediaPlayer.pause();
     }
 
+    //// This method checks if the background music is paused
     public boolean isBackgroundMusicPaused() {
         return !mediaPlayer.isPlaying();
     }

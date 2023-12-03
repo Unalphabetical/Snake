@@ -41,8 +41,8 @@ public class SnakeSettingsActivity extends AppCompatActivity {
     }
 
 
+    //// This click event toggles the music on and off
     public void toggleMusic(View v) {
-        //// Enable or disable the music
         if (musicButton.isChecked()) {
             saveManager.setMusicEnabled(true);
         } else {
@@ -51,6 +51,7 @@ public class SnakeSettingsActivity extends AppCompatActivity {
 
     }
 
+    //// This click event toggles the sound on and off
     public void toggleSound(View v){
         if (soundButton.isChecked()){
             saveManager.setSoundEnabled(true);
@@ -59,21 +60,27 @@ public class SnakeSettingsActivity extends AppCompatActivity {
         }
     }
 
+    //// This click event moves us from the settings menu to the game
     public void resumeGame(View v) {
         Intent intent = new Intent(this, SnakeActivity.class);
         startActivity(intent);
     }
 
+    //// This click event moves us from the settings menu to the main menu
     public void mainMenu(View v) {
         Intent intent = new Intent(this, SnakeMenuActivity.class);
         startActivity(intent);
     }
 
+    //// This click event deletes the save data
+    //// in case of a bug or something
     public void deleteSave(View v) {
         SaveManager saveManager = new SaveManager(this);
         saveManager.deleteData();
     }
 
+    //// This click event deletes the leaderboard data
+    //// in case of a bug or something
     public void deleteLeaderboard(View v) {
         LeaderboardManager leaderboardManager = new LeaderboardManager(this);
         leaderboardManager.deleteData();

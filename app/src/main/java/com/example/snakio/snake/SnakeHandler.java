@@ -126,6 +126,14 @@ public class SnakeHandler {
         this.snake = snake;
     }
 
+    public void setWrapAround(boolean wrapAround) {
+        this.wrapAround = wrapAround;
+    }
+
+    public void move(String direction) {
+        heading = Heading.valueOf(direction.toUpperCase(Locale.ROOT));
+    }
+
     public void move() {
         // Move the body
         // Start at the back and move it
@@ -294,14 +302,6 @@ public class SnakeHandler {
                 }
             }
         }
-    }
-
-    public void move(String direction) {
-        heading = Heading.valueOf(direction.toUpperCase(Locale.ROOT));
-    }
-
-    public void setWrapAround(boolean wrapAround) {
-        this.wrapAround = wrapAround;
     }
 
 }

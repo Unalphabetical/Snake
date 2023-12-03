@@ -15,6 +15,9 @@ public class OrangeApple extends Apple {
         super(context, sr, s, apple);
     }
 
+    //// The snake can wrap around the screen for 10 seconds
+    //// Currently it is not cumulative
+    //// So if you eat another one, the timer won't reset
     @Override
     public boolean onEaten(Object... objects) {
         for (Object o : objects) {

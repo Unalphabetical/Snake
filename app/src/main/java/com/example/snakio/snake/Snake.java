@@ -27,13 +27,13 @@ public class Snake {
         this.score = score;
     }
 
+    public void deleteSegments() {
+        this.segments = new ArrayList<>();
+    }
+
     public void grow(Point point, Segments.Type bodyType) {
         Segments segment = new Segments(point, bodyType);
         this.segments.add(segment);
-    }
-
-    public void deleteSegments() {
-        this.segments = new ArrayList<>();
     }
 
     public void reset() {
