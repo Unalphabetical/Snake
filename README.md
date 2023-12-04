@@ -15,10 +15,12 @@ Refactor and redesign the Snake game in [Chapter 17](https://github.com/PacktPub
     - Green
     - Orange
     - Purple
+    - Blue
 - Powerups
     - Decrease size and score
     - Wrap around
     - 2x Speed
+    - Inverted controls
 - More to come
 
 ## Tech Stack
