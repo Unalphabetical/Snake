@@ -9,6 +9,7 @@ public class Snake {
 
     int score;
     public List<Segments> segments;
+    public boolean inverted = false;
 
     public Snake() {
         this.segments = new ArrayList<>();
@@ -21,6 +22,14 @@ public class Snake {
 
     public int getScore() {
         return score;
+    }
+
+    public void setInverted(boolean inverted) {
+        this.inverted = inverted;
+    }
+
+    public boolean isInverted() {
+        return this.inverted;
     }
 
     public void setScore(int score) {

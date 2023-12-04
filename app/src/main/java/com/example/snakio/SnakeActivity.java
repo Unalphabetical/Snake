@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.snakio.snake.Snake;
+import com.example.snakio.snake.SnakeHandler;
+
 public class SnakeActivity extends Activity {
 
     // Declare an instance of SnakeGame
@@ -65,19 +68,51 @@ public class SnakeActivity extends Activity {
 
     //// The following methods are the click events for the control menu
     public void moveLeft(View view) {
-        this.mSnakeGame.getSnakeHandler().move("Left");
+        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        Snake snake = snakeHandler.getSnake();
+
+        if (snake.isInverted()) {
+            snakeHandler.move("Right");
+            return;
+        }
+
+        snakeHandler.move("Left");
     }
 
     public void moveUp(View view) {
-        this.mSnakeGame.getSnakeHandler().move("Up");
+        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        Snake snake = snakeHandler.getSnake();
+
+        if (snake.isInverted()) {
+            snakeHandler.move("Down");
+            return;
+        }
+
+        snakeHandler.move("Up");
     }
 
     public void moveRight(View view) {
-        this.mSnakeGame.getSnakeHandler().move("Right");
+        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        Snake snake = snakeHandler.getSnake();
+
+        if (snake.isInverted()) {
+            snakeHandler.move("Left");
+            return;
+        }
+
+        snakeHandler.move("Right");
     }
 
     public void moveDown(View view) {
-        this.mSnakeGame.getSnakeHandler().move("Down");
+        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        Snake snake = snakeHandler.getSnake();
+
+        if (snake.isInverted()) {
+            snakeHandler.move("Up");
+            return;
+        }
+
+        snakeHandler.move("Down");
     }
 
     //// The click event for the "Settings" button

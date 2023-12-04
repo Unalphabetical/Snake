@@ -5,6 +5,7 @@ import android.graphics.Point;
 
 import com.example.snakio.R;
 import com.example.snakio.apples.Apple;
+import com.example.snakio.apples.types.BlueApple;
 import com.example.snakio.apples.types.GreenApple;
 import com.example.snakio.apples.types.OrangeApple;
 import com.example.snakio.apples.types.RedApple;
@@ -63,18 +64,20 @@ public class AppleManager {
     public List<Apple> loadApples() {
         List<Apple> appleChoice = new ArrayList<>();
         appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(1, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(2, new OrangeApple(context, sr, s, R.drawable.orangeapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(3, new PurpleApple(context, sr, s, R.drawable.purpleapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(1, new BlueApple(context, sr, s, R.drawable.blueapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(2, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(3, new OrangeApple(context, sr, s, R.drawable.orangeapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(4, new PurpleApple(context, sr, s, R.drawable.purpleapple).setValidity(10).refreshBitmap(context));
         return appleChoice;
     }
 
     public List<Integer> loadChances() {
         List<Integer> appleChance = new ArrayList<>();
-        appleChance.add(0, 900);
-        appleChance.add(1, 100);
-        appleChance.add(2, 75);
-        appleChance.add(3, 50);
+        appleChance.add(0, 1000);
+        appleChance.add(1, 150);
+        appleChance.add(2, 100);
+        appleChance.add(3, 75);
+        appleChance.add(4, 50);
         return appleChance;
     }
 
