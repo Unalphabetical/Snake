@@ -232,6 +232,11 @@ public class SnakeGame extends SurfaceView implements Runnable {
                 apple.refreshBitmap(getContext()).draw(canvas, paint);
             }
 
+            if (gameScore != null) {
+                gameScore.setText(String.valueOf(score));
+                gameScore.invalidate();
+            }
+
             snakeHandler.draw(canvas, paint);
 
             if (gameState.isDead()) {
