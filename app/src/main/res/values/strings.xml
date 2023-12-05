@@ -13,4 +13,6 @@
     <string name="mainMenu">Main Menu</string>
     <string name="null_text" />
     <string name="deleteLeaderboard">Delete Leaderboard</string>
+    <string name="score">Score:</string>
+    <string name="_0">0</string>
 </resources>
