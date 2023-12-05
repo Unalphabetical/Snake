@@ -60,45 +60,33 @@ public class SnakeGame extends SurfaceView implements Runnable {
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
         super(context);
-
-        //// Initialize the audio
-        snakeAudio = new SnakeAudio(context);
-
-        //// Initialize the game state
-        gameState = new GameState();
-
-        // Work out how many pixels each block is
-        int blockSize = size.x / NUM_BLOCKS_WIDE;
-        // How many blocks of the same size will fit into the height
-        mNumBlocksHigh = size.y / blockSize;
-
-        // Initialize the drawing objects
-        SurfaceHolder mSurfaceHolder = getHolder();
-        Paint mPaint = new Paint();
-        snakeCanvas = new SnakeCanvas(mSurfaceHolder, mPaint);
-
-        // Call the constructors of our two game objects
-        appleManager = new AppleManager(context,
-                new Point(NUM_BLOCKS_WIDE,
-                        mNumBlocksHigh),
-                blockSize, appleCount);
-
-        snakeHandler = new SnakeHandler(context,
-                new Point(NUM_BLOCKS_WIDE,
-                        mNumBlocksHigh),
-                blockSize);
-
-        //// Initialize the save manager
-        saveManager = new SaveManager(context);
-
-        //// Initialize the leaderboard manager
-        leaderboardManager = new LeaderboardManager(context);
+        initialize(context, size);
     }
 
     //// Constructor for the Game Score text view
     public SnakeGame(SnakeActivity context, Point size, View viewById) {
-        this(context, size);
+        super(context);
+        initialize(context, size);
         this.gameScore = (TextView) viewById;
+    }
+
+    //// This initializes all the objects needed for the game
+    private void initialize(Context context, Point size) {
+        snakeAudio = new SnakeAudio(context);
+        gameState = new GameState();
+
+        int blockSize = size.x / NUM_BLOCKS_WIDE;
+        mNumBlocksHigh = size.y / blockSize;
+
+        SurfaceHolder mSurfaceHolder = getHolder();
+        Paint mPaint = new Paint();
+        snakeCanvas = new SnakeCanvas(mSurfaceHolder, mPaint);
+
+        appleManager = new AppleManager(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize, appleCount);
+        snakeHandler = new SnakeHandler(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize);
+
+        saveManager = new SaveManager(context);
+        leaderboardManager = new LeaderboardManager(context);
     }
 
     //// Getter for the Snake Handler
@@ -276,41 +264,50 @@ public class SnakeGame extends SurfaceView implements Runnable {
         return true;
     }
 
+
     // Stop the thread
     //// And save all the required data for the game
     public void pause() {
         gameState.setPlaying(false);
-        this.saveManager.setSnake(snakeHandler.getSnake())
-                .setGameState(gameState)
-                .setHeading(String.valueOf(snakeHandler.getHeading()))
-                .setAppleList(appleManager.getAppleList())
-                .save();
-        this.leaderboardManager.saveSnakeList();
-
+        saveGameData();
         try {
             mThread.join();
             if (!snakeAudio.isBackgroundMusicPaused()) snakeAudio.pauseBackgroundMusic();
         } catch (InterruptedException e) {
-            // Error
+            // Error handling...
         }
     }
 
     // Start the thread
     //// And load all the required data for the game
     public void resume() {
-        if (this.saveManager.hasData()) {
-            this.saveManager.load();
-            this.snakeHandler.setSnake(saveManager.getSnake());
-            this.gameState = saveManager.getGameState();
-            this.snakeHandler.move(saveManager.getHeading());
-            this.appleManager.setAppleList(saveManager.getAppleList());
-            this.leaderboardManager.loadSnakeList();
+        if (saveManager.hasData()) {
+            loadGameData();
         }
         gameState.setPlaying(true);
-
         mThread = new Thread(this);
         mThread.start();
-        //if (snakeAudio.isBackgroundMusicPaused()) snakeAudio.playBackgroundMusic();
+        // if (snakeAudio.isBackgroundMusicPaused()) snakeAudio.playBackgroundMusic();
+    }
+
+    // Method to save the game data
+    private void saveGameData() {
+        saveManager.setSnake(snakeHandler.getSnake())
+                .setGameState(gameState)
+                .setHeading(String.valueOf(snakeHandler.getHeading()))
+                .setAppleList(appleManager.getAppleList())
+                .save();
+        leaderboardManager.saveSnakeList();
+    }
+
+    // Method to load the game data
+    private void loadGameData() {
+        saveManager.load();
+        snakeHandler.setSnake(saveManager.getSnake());
+        gameState = saveManager.getGameState();
+        snakeHandler.move(saveManager.getHeading());
+        appleManager.setAppleList(saveManager.getAppleList());
+        leaderboardManager.loadSnakeList();
     }
 
 }
