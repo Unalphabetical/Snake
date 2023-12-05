@@ -26,52 +26,71 @@
             android:orientation="vertical"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:onClick="moveUp" />
+                android:onClick="moveUp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/uparrow"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:onClick="moveLeft"/>
+                    android:onClick="moveLeft"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:src="@drawable/leftarrow"/>
 
-                <Button
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:visibility="invisible"/>
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:src="@drawable/middlecircle"/>
 
-                <Button
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:onClick="moveRight"/>
+                    android:onClick="moveRight"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:src="@drawable/rightarrow"/>
             </LinearLayout>
 
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:onClick="moveDown"/>
+                android:onClick="moveDown"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/downarrow"/>
         </LinearLayout>
 
         <TextView
             android:layout_height="40dp"
             android:layout_width="75dp"
             android:id="@+id/scoreText"
-            android:textSize="25dp"
-            android:text="Score: "/>
+            android:textSize="25sp"
+            android:text="@string/score"/>
 
         <TextView
             android:layout_height="40dp"
             android:layout_width="75dp"
             android:layout_marginStart="80dp"
             android:id="@+id/scoreValue"
-            android:textSize="25dp"
-            android:text="0"/>
+            android:textSize="25sp"
+            android:text="@string/_0"/>
 
     </RelativeLayout>
 
@@ -101,45 +120,65 @@
             android:orientation="vertical"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:onClick="moveUp"/>
+                android:onClick="moveUp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/uparrow"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:onClick="moveLeft"/>
+                    android:onClick="moveLeft"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:src="@drawable/leftarrow"/>
 
-                <Button
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:visibility="invisible"/>
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:src="@drawable/middlecircle"/>
 
-                <Button
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:onClick="moveRight"/>
+                    android:onClick="moveRight"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:src="@drawable/rightarrow"/>
             </LinearLayout>
 
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:onClick="moveDown"/>
+                android:onClick="moveDown"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/downarrow"/>
         </LinearLayout>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/settings_icon"
+            android:onClick="settingsMenu"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:onClick="settingsMenu"
+            android:background="@null"
+            android:src="@drawable/settings_icon"
             android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
