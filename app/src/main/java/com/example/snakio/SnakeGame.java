@@ -44,12 +44,13 @@ public class SnakeGame extends SurfaceView implements Runnable {
     private SnakeAudio snakeAudio;
 
     private TextView gameScore;
+    private TextView durationText;
 
     private SaveManager saveManager;
 
     private AppleManager appleManager;
     private int appleCount = 10;
-    
+
     // Introducing fps speed for snake
     private long TARGET_FPS = 10;
 
@@ -64,10 +65,10 @@ public class SnakeGame extends SurfaceView implements Runnable {
     }
 
     //// Constructor for the Game Score text view
-    public SnakeGame(SnakeActivity context, Point size, View viewById) {
+    public SnakeGame(SnakeActivity context, Point size, View gameScoreView) {
         super(context);
         initialize(context, size);
-        this.gameScore = (TextView) viewById;
+        this.gameScore = (TextView) gameScoreView;
     }
 
     //// This initializes all the objects needed for the game

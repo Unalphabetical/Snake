@@ -176,7 +176,7 @@ public class SnakeHandler {
         heading = Heading.RIGHT;
 
         // Delete the old contents of the ArrayList
-        this.snake.reset();
+        this.snake = new Snake();
 
         // Start with a single snake body
         this.snake.grow(new Point(w / 2, h / 2), Segments.Type.HEAD);

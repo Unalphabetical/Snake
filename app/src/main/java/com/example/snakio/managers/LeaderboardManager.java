@@ -35,6 +35,7 @@ public class LeaderboardManager {
 
     public void deleteData() {
         this.prefs.edit().clear().apply();
+        this.snakeList = Arrays.asList(new Snake[5]);
     }
 
     public void saveSnakeList() {
@@ -62,21 +63,17 @@ public class LeaderboardManager {
     }
 
     public void addSnake(Snake snake) {
-        if (snakeList == null) return;
-        if (snakeList.size() == 0) return;
+        if (getSnakeList().isEmpty()) return;
 
-        Snake snakeToReplace = snakeList.get(0);
+        int snakeToReplace = Integer.MAX_VALUE - 1;
         for (int i = 0; i < snakeList.size(); i++) {
-            if (snakeList.get(i) == null) {
-                snakeToReplace = snakeList.get(i);
+            if (snakeList.get(i) == null || snakeList.get(i).getScore() < snake.getScore()) {
+                snakeToReplace = i;
+                sorted = false;
                 break;
             }
-            if (snakeList.get(i).getScore() < snake.getScore()) {
-                snakeToReplace = snakeList.get(i);
-            }
         }
-        snakeList.set(snakeList.indexOf(snakeToReplace), snake);
-        sorted = false;
+        if (snakeToReplace < snakeList.size()) snakeList.set(snakeToReplace, snake);
     }
 
     public void prettyPrintSnakeList() {
