@@ -48,7 +48,7 @@ public class SnakeActivity extends Activity {
         View textView = inflater.inflate(R.layout.snake_control_menu, null);
 
         //// This gets the text view from the control menu
-        TextView scoreTextView = (TextView) textView.findViewById(R.id.scoreValue);
+        TextView scoreTextView = textView.findViewById(R.id.scoreValue);
 
         // Create a new instance of the SnakeEngine class
         //// The score text view is passed onto the SnakeEngine class
@@ -66,53 +66,36 @@ public class SnakeActivity extends Activity {
         setContentView(relativeLayout);
     }
 
-    //// The following methods are the click events for the control menu
+    //// The click event for the "Left" button
+    //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveLeft(View view) {
         SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
-
-        if (snake.isInverted()) {
-            snakeHandler.move("Right");
-            return;
-        }
-
-        snakeHandler.move("Left");
+        snakeHandler.move(snake.isInverted() ? "Right" : "Left");
     }
 
+    //// The click event for the "Up" button
+    //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveUp(View view) {
         SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
-
-        if (snake.isInverted()) {
-            snakeHandler.move("Down");
-            return;
-        }
-
-        snakeHandler.move("Up");
+        snakeHandler.move(snake.isInverted() ? "Down" : "Up");
     }
 
+    //// The click event for the "Right" button
+    //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveRight(View view) {
         SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
-
-        if (snake.isInverted()) {
-            snakeHandler.move("Left");
-            return;
-        }
-
-        snakeHandler.move("Right");
+        snakeHandler.move(snake.isInverted() ? "Left" : "Right");
     }
 
+    //// The click event for the "Down" button
+    //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveDown(View view) {
         SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
-
-        if (snake.isInverted()) {
-            snakeHandler.move("Up");
-            return;
-        }
-
-        snakeHandler.move("Down");
+        snakeHandler.move(snake.isInverted() ? "Up" : "Down");
     }
 
     //// The click event for the "Settings" button

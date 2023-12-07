@@ -43,21 +43,12 @@ public class SnakeSettingsActivity extends AppCompatActivity {
 
     //// This click event toggles the music on and off
     public void toggleMusic(View v) {
-        if (musicButton.isChecked()) {
-            saveManager.setMusicEnabled(true);
-        } else {
-            saveManager.setMusicEnabled(false);
-        }
-
+        saveManager.setMusicEnabled(musicButton.isChecked());
     }
 
     //// This click event toggles the sound on and off
     public void toggleSound(View v){
-        if (soundButton.isChecked()){
-            saveManager.setSoundEnabled(true);
-        } else {
-            saveManager.setSoundEnabled(false);
-        }
+        saveManager.setSoundEnabled(soundButton.isChecked());
     }
 
     //// This click event moves us from the settings menu to the game

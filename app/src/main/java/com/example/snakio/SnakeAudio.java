@@ -51,19 +51,25 @@ public class SnakeAudio {
     }
 
     public void playEatSound() {
-        if (saveManager.isSoundEnabled()) {
+        isSoundEnabled = saveManager.isSoundEnabled();
+
+        if (isSoundEnabled) {
             soundPoolHelper.play(mEat_ID, 0.1F, 0.1F);
         }
     }
 
     public void playCrashSound() {
-        if (saveManager.isSoundEnabled()) {
+        isSoundEnabled = saveManager.isSoundEnabled();
+
+        if (isSoundEnabled) {
             soundPoolHelper.play(mCrashID);
         }
     }
 
     public void playSpawnAppleSound() {
-        if (saveManager.isSoundEnabled()) {
+        isSoundEnabled = saveManager.isSoundEnabled();
+
+        if (isSoundEnabled) {
             soundPoolHelper.play(mSpawnAppleID);
         }
     }
