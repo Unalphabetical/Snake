@@ -6,8 +6,9 @@ import android.graphics.Point;
 import com.example.snakio.apples.Apple;
 import com.example.snakio.snake.Snake;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class BlueApple extends Apple {
 
@@ -15,6 +16,7 @@ public class BlueApple extends Apple {
         super(context, sr, s, apple);
     }
 
+    //// The controls for the snake are inverted for 10 seconds
     @Override
     public boolean onEaten(Object... objects) {
         for (Object o : objects) {
@@ -22,18 +24,14 @@ public class BlueApple extends Apple {
                 Snake snake = (Snake) o;
                 snake.setInverted(true);
 
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        snake.setInverted(false);
-                    }
-                };
+                ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                scheduler.schedule(() -> snake.setInverted(false), 10, TimeUnit.SECONDS);
 
-                Timer timer = new Timer();
-                timer.schedule(timerTask, 10000L);
+                scheduler.shutdown();
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 }

@@ -6,8 +6,9 @@ import android.graphics.Point;
 import com.example.snakio.apples.Apple;
 import com.example.snakio.snake.SnakeHandler;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class OrangeApple extends Apple {
 
@@ -25,18 +26,14 @@ public class OrangeApple extends Apple {
                 SnakeHandler snakeHandler = (SnakeHandler) o;
                 snakeHandler.setWrapAround(true);
 
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        snakeHandler.setWrapAround(false);
-                    }
-                };
+                ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                scheduler.schedule(() -> snakeHandler.setWrapAround(false), 10, TimeUnit.SECONDS);
+                scheduler.shutdown();
 
-                Timer timer = new Timer();
-                timer.schedule(timerTask, 10000L);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 }

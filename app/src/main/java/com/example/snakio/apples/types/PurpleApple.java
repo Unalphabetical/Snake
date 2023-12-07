@@ -6,17 +6,17 @@ import android.graphics.Point;
 import com.example.snakio.SnakeGame;
 import com.example.snakio.apples.Apple;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class PurpleApple extends Apple {
-    
+
     public PurpleApple(Context context, Point sr, int s, int apple) {
         super(context, sr, s, apple);
     }
 
-    //// The game doubles in speed for 10 seconds
-    //// and then returns to normal
+    // The game doubles in speed for 10 seconds and then returns to normal
     @Override
     public boolean onEaten(Object... objects) {
         for (Object o : objects) {
@@ -24,18 +24,13 @@ public class PurpleApple extends Apple {
                 SnakeGame snakeGame = (SnakeGame) o;
                 snakeGame.setSpeed(20);
 
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        snakeGame.setSpeed(10);
-                    }
-                };
+                ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                scheduler.schedule(() -> snakeGame.setSpeed(10), 10, TimeUnit.SECONDS);
+                scheduler.shutdown();
 
-                Timer timer = new Timer();
-                timer.schedule(timerTask, 10000L);
+                return true;
             }
         }
-        return true;
+        return false;
     }
-
 }
