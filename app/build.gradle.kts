@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.snakio"
+    namespace = "com.example.snake"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.snakio"
+        applicationId = "com.example.snake"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
