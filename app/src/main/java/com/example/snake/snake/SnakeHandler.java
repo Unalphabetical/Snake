@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.os.Build;
 
 import com.example.snake.R;
 
@@ -47,6 +48,9 @@ public class SnakeHandler {
 
     //// Wrap around variable to enable or disable wrap around
     private boolean wrapAround = false;
+
+    private double leftBorder = 0.22;
+    private double rightBorder = 0.75;
 
     public SnakeHandler(Context context, Point moveRange, int segmentSize) {
 
@@ -111,6 +115,11 @@ public class SnakeHandler {
         this.bitmapBody = Bitmap
                 .createScaledBitmap(this.bitmapBody,
                         segmentSize, segmentSize, false);
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+            this.leftBorder = 0.23;
+            this.rightBorder = 0.8;
+        }
 
     }
 
@@ -188,8 +197,8 @@ public class SnakeHandler {
 
         List<Segments> segmentLocations = this.snake.getSegments();
         // Hit any of the screen edges
-        if (segmentLocations.get(0).getX() < moveRange.x * 0.2 ||
-                segmentLocations.get(0).getX() > moveRange.x * 0.75 ||
+        if (segmentLocations.get(0).getX() < moveRange.x * leftBorder ||
+                segmentLocations.get(0).getX() > moveRange.x * rightBorder ||
                 segmentLocations.get(0).getY() == -1 ||
                 segmentLocations.get(0).getY() > moveRange.y + 1) {
 
@@ -211,11 +220,11 @@ public class SnakeHandler {
     public boolean wrapAround() {
         if (wrapAround) {
             List<Segments> segmentLocations = this.snake.getSegments();
-            if (segmentLocations.get(0).getX() < moveRange.x * 0.2) {
-                segmentLocations.get(0).setX((int) (moveRange.x * 0.75));
+            if (segmentLocations.get(0).getX() < moveRange.x * leftBorder) {
+                segmentLocations.get(0).setX((int) (moveRange.x * rightBorder));
                 this.heading = Heading.LEFT;
-            } else if (segmentLocations.get(0).getX() > moveRange.x * 0.75) {
-                segmentLocations.get(0).setX((int) (moveRange.x * 0.2));
+            } else if (segmentLocations.get(0).getX() > moveRange.x * rightBorder) {
+                segmentLocations.get(0).setX((int) (moveRange.x * leftBorder));
                 this.heading = Heading.RIGHT;
             } else if (segmentLocations.get(0).getY() == -1) {
                 segmentLocations.get(0).setY(moveRange.y);
