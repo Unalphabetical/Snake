@@ -17,8 +17,8 @@ public class Apple {
 
     // The range of values we can choose from
     // to spawn an apple
-    private Point mSpawnRange;
-    private int mSize;
+    private Point spawnRange;
+    private int size;
 
     // An image to represent the apple
     private Bitmap mBitmapApple;
@@ -29,16 +29,16 @@ public class Apple {
     private long expireTime;
 
     /// Set up the apple in the constructor
-    public Apple(Context context, Point sr, int s, int apple){
+    public Apple(Context context, Point spawnRange, int size, int apple){
 
         // Make a note of the passed in spawn range
-        mSpawnRange = sr;
+        this.spawnRange = spawnRange;
 
         // Make a note of the size of an apple
-        mSize = s;
+        this.size = size;
 
         // Hide the apple off-screen until the game starts
-        location.x = -10;
+        this.location.x = -10;
 
         //// Make a note of the apple to refresh the bitmap
         this.apple = apple;
@@ -61,8 +61,8 @@ public class Apple {
     public Apple spawn(){
         // Choose two random values and place the apple
         Random random = new Random();
-        location.x = (int) (random.nextInt((int) (mSpawnRange.x * 0.5)) + (mSpawnRange.x * 0.25));
-        location.y = random.nextInt(mSpawnRange.y - 2) + 1;
+        location.x = (int) (random.nextInt((int) (spawnRange.x * 0.5)) + (spawnRange.x * 0.25));
+        location.y = random.nextInt(spawnRange.y - 2) + 1;
         return this;
     }
 
@@ -75,7 +75,7 @@ public class Apple {
     // Draw the apple
     public void draw(Canvas canvas, Paint paint){
         canvas.drawBitmap(mBitmapApple,
-                location.x * mSize, location.y * mSize, paint);
+                location.x * size, location.y * size, paint);
     }
 
     //// This is required to refresh the bitmap
@@ -85,7 +85,7 @@ public class Apple {
         mBitmapApple = BitmapFactory.decodeResource(context.getResources(), apple);
 
         // Resize the bitmap
-        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, mSize, mSize, false);
+        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, size, size, false);
 
         return this;
     }

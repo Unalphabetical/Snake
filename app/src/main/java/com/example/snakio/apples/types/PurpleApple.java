@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public class PurpleApple extends Apple {
 
-    public PurpleApple(Context context, Point sr, int s, int apple) {
-        super(context, sr, s, apple);
+    public PurpleApple(Context context, Point spawnRange, int size, int apple) {
+        super(context, spawnRange, size, apple);
     }
 
     // The game doubles in speed for 10 seconds and then returns to normal

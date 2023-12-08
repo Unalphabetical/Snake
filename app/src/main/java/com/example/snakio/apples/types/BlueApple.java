@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BlueApple extends Apple {
 
-    public BlueApple(Context context, Point sr, int s, int apple) {
-        super(context, sr, s, apple);
+    public BlueApple(Context context, Point spawnRange, int size, int apple) {
+        super(context, spawnRange, size, apple);
     }
 
     //// The controls for the snake are inverted for 10 seconds

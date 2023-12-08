@@ -24,14 +24,14 @@ public class SnakeGame extends SurfaceView implements Runnable {
     private Thread mThread = null;
 
     // Control pausing between updates
-    private long mNextFrameTime;
+    private long nextFrameTime;
 
     //// This is the game state
     GameState gameState;
 
     // The size in segments of the playable area
     private final int NUM_BLOCKS_WIDE = 40;
-    private int mNumBlocksHigh;
+    private int numBlocksHigh;
 
     // Objects for drawing
     private SnakeCanvas snakeCanvas;
@@ -73,27 +73,27 @@ public class SnakeGame extends SurfaceView implements Runnable {
 
     //// This initializes all the objects needed for the game
     private void initialize(Context context, Point size) {
-        snakeAudio = new SnakeAudio(context);
-        gameState = new GameState();
+        this.snakeAudio = new SnakeAudio(context);
+        this.gameState = new GameState();
 
-        int blockSize = size.x / NUM_BLOCKS_WIDE;
-        mNumBlocksHigh = size.y / blockSize;
+        int blockSize = size.x / this.NUM_BLOCKS_WIDE;
+        this.numBlocksHigh = size.y / blockSize;
 
         SurfaceHolder mSurfaceHolder = getHolder();
         Paint mPaint = new Paint();
-        snakeCanvas = new SnakeCanvas(mSurfaceHolder, mPaint);
+        this.snakeCanvas = new SnakeCanvas(mSurfaceHolder, mPaint);
 
-        appleManager = new AppleManager(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize, appleCount);
-        snakeHandler = new SnakeHandler(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize);
+        this.appleManager = new AppleManager(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize, appleCount);
+        this.snakeHandler = new SnakeHandler(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
 
-        saveManager = new SaveManager(context);
-        leaderboardManager = new LeaderboardManager(context);
+        this.saveManager = new SaveManager(context);
+        this.leaderboardManager = new LeaderboardManager(context);
     }
 
     //// Getter for the Snake Handler
     //// Handles the art, movement, etc. of the snake
     public SnakeHandler getSnakeHandler() {
-        return snakeHandler;
+        return this.snakeHandler;
     }
 
     //// This returns all the objects needed for the power up events
@@ -112,13 +112,13 @@ public class SnakeGame extends SurfaceView implements Runnable {
     public void newGame() {
 
         // reset the snake
-        snakeHandler.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
+        snakeHandler.reset(NUM_BLOCKS_WIDE, numBlocksHigh);
 
         // Get the apple(s) ready for dinner
         appleManager.spawnApple();
 
-        // Setup mNextFrameTime so an update can triggered
-        mNextFrameTime = System.currentTimeMillis();
+        // Setup nextFrameTime so an update can triggered
+        nextFrameTime = System.currentTimeMillis();
     }
 
     // Handles the game loop
@@ -143,11 +143,11 @@ public class SnakeGame extends SurfaceView implements Runnable {
         final long MILLIS_PER_SECOND = 1000;
 
         // Are we due to update the frame
-        if(mNextFrameTime <= System.currentTimeMillis()){
+        if(nextFrameTime <= System.currentTimeMillis()){
             // Tenth of a second has passed
 
             // Setup when the next update will be triggered
-            mNextFrameTime = System.currentTimeMillis()
+            nextFrameTime = System.currentTimeMillis()
                     + MILLIS_PER_SECOND / TARGET_FPS;
 
             // Return true so that the update and draw
@@ -199,8 +199,8 @@ public class SnakeGame extends SurfaceView implements Runnable {
             snakeAudio.playCrashSound();
 
             // Save the score to the leaderboard
-            this.leaderboardManager.addSnake(snakeHandler.getSnake());
-            this.leaderboardManager.saveSnakeList();
+            leaderboardManager.addSnake(snakeHandler.getSnake());
+            leaderboardManager.saveSnakeList();
 
             gameState.setPaused(true);
             gameState.setDead(true);

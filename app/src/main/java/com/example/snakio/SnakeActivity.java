@@ -16,7 +16,7 @@ import com.example.snakio.snake.SnakeHandler;
 public class SnakeActivity extends Activity {
 
     // Declare an instance of SnakeGame
-    SnakeGame mSnakeGame;
+    SnakeGame snakeGame;
 
     // Set the game up
     @Override
@@ -53,10 +53,10 @@ public class SnakeActivity extends Activity {
         // Create a new instance of the SnakeEngine class
         //// The score text view is passed onto the SnakeEngine class
         //// So we can show and update the score inside there
-        mSnakeGame = new SnakeGame(this, size, scoreTextView);
+        this.snakeGame = new SnakeGame(this, size, scoreTextView);
 
         //// This adds the snake game to the relative layout
-        relativeLayout.addView(mSnakeGame);
+        relativeLayout.addView(this.snakeGame);
 
         //// This adds the control menu to the relative layout
         relativeLayout.addView(textView, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
@@ -69,7 +69,7 @@ public class SnakeActivity extends Activity {
     //// The click event for the "Left" button
     //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveLeft(View view) {
-        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        SnakeHandler snakeHandler = snakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
         snakeHandler.move(snake.isInverted() ? "Right" : "Left");
     }
@@ -77,7 +77,7 @@ public class SnakeActivity extends Activity {
     //// The click event for the "Up" button
     //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveUp(View view) {
-        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        SnakeHandler snakeHandler = snakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
         snakeHandler.move(snake.isInverted() ? "Down" : "Up");
     }
@@ -85,7 +85,7 @@ public class SnakeActivity extends Activity {
     //// The click event for the "Right" button
     //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveRight(View view) {
-        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        SnakeHandler snakeHandler = snakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
         snakeHandler.move(snake.isInverted() ? "Left" : "Right");
     }
@@ -93,7 +93,7 @@ public class SnakeActivity extends Activity {
     //// The click event for the "Down" button
     //// This method can invert the snake's direction if the snake has eaten a Blue apple
     public void moveDown(View view) {
-        SnakeHandler snakeHandler = this.mSnakeGame.getSnakeHandler();
+        SnakeHandler snakeHandler = snakeGame.getSnakeHandler();
         Snake snake = snakeHandler.getSnake();
         snakeHandler.move(snake.isInverted() ? "Up" : "Down");
     }
@@ -108,14 +108,14 @@ public class SnakeActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        mSnakeGame.resume();
+        snakeGame.resume();
     }
 
     // Stop the thread in snakeEngine
     @Override
     protected void onPause() {
         super.onPause();
-        mSnakeGame.pause();
+        snakeGame.pause();
     }
 
 }

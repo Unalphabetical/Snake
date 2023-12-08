@@ -17,13 +17,13 @@ import java.util.List;
 public class AppleManager {
 
     Context context;
-    Point sr;
-    int s;
+    Point point;
+    int size;
     List<Apple> appleList = new ArrayList<>();
 
-    public AppleManager(Context context, Point sr, int s, int appleCount) {
-        this.sr = sr;
-        this.s = s;
+    public AppleManager(Context context, Point point, int size, int appleCount) {
+        this.point = point;
+        this.size = size;
 
         this.context = context;
         for (int i = 0; i < appleCount; i++) {
@@ -33,7 +33,7 @@ public class AppleManager {
     }
 
     public List<Apple> getAppleList() {
-        return appleList;
+        return this.appleList;
     }
 
     public void setAppleList(List<Apple> appleList) {
@@ -56,18 +56,18 @@ public class AppleManager {
 
     public AppleManager spawnApple() {
         for (Apple apple : appleList) {
-            apple.refreshBitmap(this.context).spawn();
+            apple.refreshBitmap(context).spawn();
         }
         return this;
     }
 
     public List<Apple> loadApples() {
         List<Apple> appleChoice = new ArrayList<>();
-        appleChoice.add(0, new RedApple(context, sr, s, R.drawable.redapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(1, new BlueApple(context, sr, s, R.drawable.blueapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(2, new GreenApple(context, sr, s, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(3, new OrangeApple(context, sr, s, R.drawable.orangeapple).setValidity(10).refreshBitmap(context));
-        appleChoice.add(4, new PurpleApple(context, sr, s, R.drawable.purpleapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(0, new RedApple(context, point, size, R.drawable.redapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(1, new BlueApple(context, point, size, R.drawable.blueapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(2, new GreenApple(context, point, size, R.drawable.greenapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(3, new OrangeApple(context, point, size, R.drawable.orangeapple).setValidity(10).refreshBitmap(context));
+        appleChoice.add(4, new PurpleApple(context, point, size, R.drawable.purpleapple).setValidity(10).refreshBitmap(context));
         return appleChoice;
     }
 

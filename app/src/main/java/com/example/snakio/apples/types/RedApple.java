@@ -7,8 +7,8 @@ import com.example.snakio.apples.Apple;
 
 public class RedApple extends Apple {
 
-    public RedApple(Context context, Point sr, int s, int apple) {
-        super(context, sr, s, apple);
+    public RedApple(Context context, Point spawnRange, int size, int apple) {
+        super(context, spawnRange, size, apple);
     }
 
     @Override

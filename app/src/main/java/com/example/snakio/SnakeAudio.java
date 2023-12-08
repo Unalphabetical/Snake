@@ -36,15 +36,15 @@ public class SnakeAudio {
         this.mSpawnAppleID = soundPoolHelper.load(context, R.raw.spawn_apple, 1);
 
         // Initialize MediaPlayer for background music
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
+        if (this.mediaPlayer != null) {
+            this.mediaPlayer.release();
         }
-        mediaPlayer = MediaPlayer.create(context, R.raw.background_music);
 
-        mediaPlayer.setVolume(1f, 1f);
-        mediaPlayer.setLooping(true);
+        this.mediaPlayer = MediaPlayer.create(context, R.raw.background_music);
+        this.mediaPlayer.setVolume(1f, 1f);
+        this.mediaPlayer.setLooping(true);
 
-        if (!mediaPlayer.isPlaying()) {
+        if (!this.mediaPlayer.isPlaying()) {
             playBackgroundMusic();
         }
 

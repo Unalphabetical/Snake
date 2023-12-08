@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public class OrangeApple extends Apple {
 
-    public OrangeApple(Context context, Point sr, int s, int apple) {
-        super(context, sr, s, apple);
+    public OrangeApple(Context context, Point spawnRange, int size, int apple) {
+        super(context, spawnRange, size, apple);
     }
 
     //// The snake can wrap around the screen for 10 seconds

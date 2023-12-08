@@ -19,10 +19,10 @@ public class SnakeHandler {
     private Snake snake;
 
     // How big is each body of the snake?
-    private int mSegmentSize;
+    private int segmentSize;
 
     // How big is the entire grid
-    private Point mMoveRange;
+    private Point moveRange;
 
     // Where is the centre of the screen
     // horizontally in pixels?
@@ -37,80 +37,80 @@ public class SnakeHandler {
     private Heading heading = Heading.RIGHT;
 
     // A bitmap for each direction the head can face
-    private Bitmap mBitmapHeadRight;
-    private Bitmap mBitmapHeadLeft;
-    private Bitmap mBitmapHeadUp;
-    private Bitmap mBitmapHeadDown;
+    private Bitmap bitmapHeadRight;
+    private Bitmap bitmapHeadLeft;
+    private Bitmap bitmapHeadUp;
+    private Bitmap bitmapHeadDown;
 
     // A bitmap for the body
-    private Bitmap mBitmapBody;
+    private Bitmap bitmapBody;
 
     //// Wrap around variable to enable or disable wrap around
     private boolean wrapAround = false;
 
-    public SnakeHandler(Context context, Point mr, int ss) {
+    public SnakeHandler(Context context, Point moveRange, int segmentSize) {
 
         // Initialize our new Snake
-        snake = new Snake();
+        this.snake = new Snake();
 
         // Initialize the body size and movement
         // range from the passed in parameters
-        mSegmentSize = ss;
-        mMoveRange = mr;
+        this.segmentSize = segmentSize;
+        this.moveRange = moveRange;
 
         // Create and scale the bitmaps
-        mBitmapHeadRight = BitmapFactory
+        this.bitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.head);
 
         // Create 3 more versions of the head for different headings
-        mBitmapHeadLeft = BitmapFactory
+        this.bitmapHeadLeft = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.head);
 
-        mBitmapHeadUp = BitmapFactory
+        this.bitmapHeadUp = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.head);
 
-        mBitmapHeadDown = BitmapFactory
+        this.bitmapHeadDown = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.head);
 
         // Modify the bitmaps to face the snake head
         // in the correct direction
-        mBitmapHeadRight = Bitmap
-                .createScaledBitmap(mBitmapHeadRight,
-                        ss, ss, false);
+        this.bitmapHeadRight = Bitmap
+                .createScaledBitmap(this.bitmapHeadRight,
+                        segmentSize, segmentSize, false);
 
         // A matrix for scaling
         Matrix matrix = new Matrix();
         matrix.preScale(-1, 1);
 
-        mBitmapHeadLeft = Bitmap
-                .createBitmap(mBitmapHeadRight,
-                        0, 0, ss, ss, matrix, true);
+        this.bitmapHeadLeft = Bitmap
+                .createBitmap(this.bitmapHeadRight,
+                        0, 0, segmentSize, segmentSize, matrix, true);
 
         // A matrix for rotating
         matrix.preRotate(-90);
-        mBitmapHeadUp = Bitmap
-                .createBitmap(mBitmapHeadRight,
-                        0, 0, ss, ss, matrix, true);
+        this.bitmapHeadUp = Bitmap
+                .createBitmap(this.bitmapHeadRight,
+                        0, 0, segmentSize, segmentSize, matrix, true);
 
         // Matrix operations are cumulative
         // so rotate by 180 to face down
         matrix.preRotate(180);
-        mBitmapHeadDown = Bitmap
-                .createBitmap(mBitmapHeadRight,
-                        0, 0, ss, ss, matrix, true);
+        this.bitmapHeadDown = Bitmap
+                .createBitmap(this.bitmapHeadRight,
+                        0, 0, segmentSize, segmentSize, matrix, true);
 
         // Create and scale the body
-        mBitmapBody = BitmapFactory
+        this.bitmapBody = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.body);
 
-        mBitmapBody = Bitmap
-                .createScaledBitmap(mBitmapBody,
-                        ss, ss, false);
+        this.bitmapBody = Bitmap
+                .createScaledBitmap(this.bitmapBody,
+                        segmentSize, segmentSize, false);
 
     }
 
@@ -119,7 +119,7 @@ public class SnakeHandler {
     }
 
     public Heading getHeading() {
-        return heading;
+        return this.heading;
     }
 
     public void setSnake(Snake snake) {
@@ -131,7 +131,7 @@ public class SnakeHandler {
     }
 
     public void move(String direction) {
-        heading = Heading.valueOf(direction.toUpperCase(Locale.ROOT));
+        this.heading = Heading.valueOf(direction.toUpperCase(Locale.ROOT));
     }
 
     public void move() {
@@ -188,10 +188,10 @@ public class SnakeHandler {
 
         List<Segments> segmentLocations = this.snake.getSegments();
         // Hit any of the screen edges
-        if (segmentLocations.get(0).getX() < mMoveRange.x * 0.2 ||
-                segmentLocations.get(0).getX() > mMoveRange.x * 0.75 ||
+        if (segmentLocations.get(0).getX() < moveRange.x * 0.2 ||
+                segmentLocations.get(0).getX() > moveRange.x * 0.75 ||
                 segmentLocations.get(0).getY() == -1 ||
-                segmentLocations.get(0).getY() > mMoveRange.y + 1) {
+                segmentLocations.get(0).getY() > moveRange.y + 1) {
 
             dead = true;
         }
@@ -211,16 +211,16 @@ public class SnakeHandler {
     public boolean wrapAround() {
         if (wrapAround) {
             List<Segments> segmentLocations = this.snake.getSegments();
-            if (segmentLocations.get(0).getX() < mMoveRange.x * 0.2) {
-                segmentLocations.get(0).setX((int) (mMoveRange.x * 0.75));
+            if (segmentLocations.get(0).getX() < moveRange.x * 0.2) {
+                segmentLocations.get(0).setX((int) (moveRange.x * 0.75));
                 this.heading = Heading.LEFT;
-            } else if (segmentLocations.get(0).getX() > mMoveRange.x * 0.75) {
-                segmentLocations.get(0).setX((int) (mMoveRange.x * 0.2));
+            } else if (segmentLocations.get(0).getX() > moveRange.x * 0.75) {
+                segmentLocations.get(0).setX((int) (moveRange.x * 0.2));
                 this.heading = Heading.RIGHT;
             } else if (segmentLocations.get(0).getY() == -1) {
-                segmentLocations.get(0).setY(mMoveRange.y);
+                segmentLocations.get(0).setY(moveRange.y);
                 this.heading = Heading.UP;
-            } else if (segmentLocations.get(0).getY() > mMoveRange.y + 1) {
+            } else if (segmentLocations.get(0).getY() > moveRange.y + 1) {
                 segmentLocations.get(0).setY(0);
                 this.heading = Heading.DOWN;
             }
@@ -259,46 +259,46 @@ public class SnakeHandler {
 
                     switch (heading) {
                         case RIGHT:
-                            canvas.drawBitmap(mBitmapHeadRight,
+                            canvas.drawBitmap(bitmapHeadRight,
                                     segmentLocations.get(i).getX()
-                                            * mSegmentSize,
+                                            * segmentSize,
                                     segmentLocations.get(i).getY()
-                                            * mSegmentSize, paint);
+                                            * segmentSize, paint);
                             break;
 
                         case LEFT:
-                            canvas.drawBitmap(mBitmapHeadLeft,
+                            canvas.drawBitmap(bitmapHeadLeft,
                                     segmentLocations.get(i).getX()
-                                            * mSegmentSize,
+                                            * segmentSize,
                                     segmentLocations.get(i).getY()
-                                            * mSegmentSize, paint);
+                                            * segmentSize, paint);
                             break;
 
                         case UP:
-                            canvas.drawBitmap(mBitmapHeadUp,
+                            canvas.drawBitmap(bitmapHeadUp,
                                     segmentLocations.get(i).getX()
-                                            * mSegmentSize,
+                                            * segmentSize,
                                     segmentLocations.get(i).getY()
-                                            * mSegmentSize, paint);
+                                            * segmentSize, paint);
                             break;
 
                         case DOWN:
-                            canvas.drawBitmap(mBitmapHeadDown,
+                            canvas.drawBitmap(bitmapHeadDown,
                                     segmentLocations.get(i).getX()
-                                            * mSegmentSize,
+                                            * segmentSize,
                                     segmentLocations.get(i).getY()
-                                            * mSegmentSize, paint);
+                                            * segmentSize, paint);
                             break;
                     }
                 }
 
                 // Draw the snake body one block at a time
                 if (segmentLocations.get(i).getType() == Segments.Type.BODY) {
-                    canvas.drawBitmap(mBitmapBody,
+                    canvas.drawBitmap(bitmapBody,
                             segmentLocations.get(i).getX()
-                                    * mSegmentSize,
+                                    * segmentSize,
                             segmentLocations.get(i).getY()
-                                    * mSegmentSize, paint);
+                                    * segmentSize, paint);
                 }
             }
         }

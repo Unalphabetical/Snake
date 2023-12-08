@@ -29,15 +29,15 @@ public class SnakeSettingsActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.snake_settings_menu);
 
-        saveManager = new SaveManager(this);
+        this.saveManager = new SaveManager(this);
 
         // Update the UI to reflect the current music state
-        musicButton = findViewById(R.id.music_button);
-        musicButton.setChecked(saveManager.isMusicEnabled());
+        this.musicButton = findViewById(R.id.music_button);
+        this.musicButton.setChecked(saveManager.isMusicEnabled());
 
         //Update the UI to reflect current sound state
-        soundButton = findViewById(R.id.sound_button);
-        soundButton.setChecked(saveManager.isSoundEnabled());
+        this.soundButton = findViewById(R.id.sound_button);
+        this.soundButton.setChecked(saveManager.isSoundEnabled());
     }
 
 
