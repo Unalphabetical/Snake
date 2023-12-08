@@ -25,6 +25,10 @@ public class SaveManager {
 
     List<AbstractApple> appleList;
 
+    private static final String SNAKE_DATA_KEY = "snakeData";
+    private static final String GAME_STATE_DATA_KEY = "gameStateData";
+    private static final String HEADING_DATA_KEY = "headingData";
+    private static final String APPLE_DATA_KEY = "appleData";
     private static final String MUSIC_ENABLED_KEY = "musicEnabled";
     private static final String SOUND_ENABLED_KEY = "soundEnabled";
 
@@ -71,21 +75,21 @@ public class SaveManager {
 
     public void saveSnakeData() {
         String snakeData = this.gson.toJson(this.snake);
-        this.prefs.edit().putString("snakeData", snakeData).apply();
+        this.prefs.edit().putString(SNAKE_DATA_KEY, snakeData).apply();
     }
 
     public void saveGameState() {
         String gameStateData = this.gson.toJson(this.gameState);
-        this.prefs.edit().putString("gameStateData", gameStateData).apply();
+        this.prefs.edit().putString(GAME_STATE_DATA_KEY, gameStateData).apply();
     }
 
     public void saveHeadingData() {
-        this.prefs.edit().putString("headingData", this.heading).apply();
+        this.prefs.edit().putString(HEADING_DATA_KEY, this.heading).apply();
     }
 
     public void saveAppleData() {
         String appleData = this.gson.toJson(this.appleList);
-        this.prefs.edit().putString("appleData", appleData).apply();
+        this.prefs.edit().putString(APPLE_DATA_KEY, appleData).apply();
     }
 
     public SaveManager setMusicEnabled(boolean musicEnabled) {
@@ -99,21 +103,21 @@ public class SaveManager {
     }
 
     public void loadSnakeData() {
-        String snakeData = this.prefs.getString("snakeData", "null");
+        String snakeData = this.prefs.getString(SNAKE_DATA_KEY, "null");
         this.snake = this.gson.fromJson(snakeData, Snake.class);
     }
 
     public void loadGameState() {
-        String gameStateData = this.prefs.getString("gameStateData", "null");
+        String gameStateData = this.prefs.getString(GAME_STATE_DATA_KEY, "null");
         this.gameState = this.gson.fromJson(gameStateData, GameState.class);
     }
 
     public void loadHeadingData() {
-        this.heading = this.prefs.getString("headingData", "null");
+        this.heading = this.prefs.getString(HEADING_DATA_KEY, "null");
     }
 
     public void loadAppleData() {
-        String appleData = this.prefs.getString("appleData", "null");
+        String appleData = this.prefs.getString(APPLE_DATA_KEY, "null");
         Type listType = new TypeToken<ArrayList<AbstractApple>>(){}.getType();
         this.appleList = this.gson.fromJson(appleData, listType);
     }
@@ -127,10 +131,10 @@ public class SaveManager {
     }
 
     public boolean hasData() {
-        String snakeData = this.prefs.getString("snakeData", "null");
-        String gameStateData = this.prefs.getString("gameStateData", "null");
-        String headingData = this.prefs.getString("headingData", "null");
-        String appleData = this.prefs.getString("appleData", "null");
+        String snakeData = this.prefs.getString(SNAKE_DATA_KEY, "null");
+        String gameStateData = this.prefs.getString(GAME_STATE_DATA_KEY, "null");
+        String headingData = this.prefs.getString(HEADING_DATA_KEY, "null");
+        String appleData = this.prefs.getString(APPLE_DATA_KEY, "null");
 
         return !snakeData.equals("null")
                 && !gameStateData.equals("null")

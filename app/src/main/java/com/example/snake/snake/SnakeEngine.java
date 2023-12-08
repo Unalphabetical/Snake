@@ -53,7 +53,7 @@ public class SnakeEngine extends SurfaceView implements Runnable {
     private AppleManager appleManager;
 
     //// The number of apples to spawn
-    private int appleCount = 10;
+    private int APPLE_COUNT = 10;
 
     // Introducing fps speed for snake
     private long TARGET_FPS = 10;
@@ -87,7 +87,7 @@ public class SnakeEngine extends SurfaceView implements Runnable {
         Paint mPaint = new Paint();
         this.snakeCanvas = new SnakeCanvas(mSurfaceHolder, mPaint);
 
-        this.appleManager = new AppleManager(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize, appleCount);
+        this.appleManager = new AppleManager(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize, APPLE_COUNT);
         this.snakeHandler = new SnakeHandler(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
 
         this.saveManager = new SaveManager(context);
