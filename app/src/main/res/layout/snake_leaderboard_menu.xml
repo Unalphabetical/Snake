@@ -34,10 +34,11 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/settings_icon"
+            android:onClick="mainMenu"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:onClick="mainMenu"/>
+            android:background="@null"
+            android:src="@drawable/settings_icon"/>
 
     </LinearLayout>
 
