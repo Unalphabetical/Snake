@@ -6,6 +6,7 @@ public class GameState {
     private volatile boolean paused = true;
 
     private volatile boolean dead = false;
+    private volatile boolean showPausedText = false;
 
     public boolean isPaused() {
         return paused;
@@ -19,6 +20,10 @@ public class GameState {
         return dead;
     }
 
+    public boolean isShowingPausedText() {
+        return showPausedText;
+    }
+
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
@@ -29,6 +34,10 @@ public class GameState {
 
     public void setDead(boolean dead) {
         this.dead = dead;
+    }
+
+    public void setShowPausedText(boolean showPausedText) {
+        this.showPausedText = showPausedText;
     }
 
 }

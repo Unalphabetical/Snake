@@ -69,9 +69,18 @@ public class SnakeCanvas {
         canvas.drawText("Tap To Play!", x, y, paint);
     }
 
+    public void drawPaused() {
+        initializePaint();
+        int x = getX();
+        int y = getY();
+
+        canvas.drawText("Paused", x, y - 100, paint);
+        canvas.drawText("Tap to resume", x, y + 100, paint);
+    }
+
     public void initializePaint() {
         paint.setColor(Color.argb(255, 255, 255, 255));
-        paint.setTextSize(200);
+        paint.setTextSize(150);
         paint.setTextAlign(Paint.Align.CENTER);
     }
 

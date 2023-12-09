@@ -115,6 +115,8 @@ public class SnakeEngine extends SurfaceView implements Runnable {
     // Called to start a new game
     public void newGame() {
 
+        if (gameState.isShowingPausedText()) return;
+
         // reset the snake
         snakeHandler.reset(NUM_BLOCKS_WIDE, numBlocksHigh);
 
@@ -247,7 +249,10 @@ public class SnakeEngine extends SurfaceView implements Runnable {
                 snakeCanvas.drawGameOver(score);
             } else if (gameState.isPaused()) {
                 // Draw the message
-                snakeCanvas.drawTapToPlay();
+                if (!gameState.isDead()) {
+                    if (gameState.isShowingPausedText()) snakeCanvas.drawPaused();
+                    else snakeCanvas.drawTapToPlay();
+                }
             }
 
             snakeCanvas.unlock();
@@ -265,6 +270,18 @@ public class SnakeEngine extends SurfaceView implements Runnable {
                         gameState.setDead(false);
                     }
 
+                    if (gameState.isShowingPausedText()) {
+
+                        //// Update the apple validity
+                        //// making the apples take longer to expire
+                        for (AbstractApple apple : appleManager.getAppleList()) {
+                            apple.updateValidity();
+                        }
+
+                        gameState.setShowPausedText(false);
+                        return true;
+                    }
+
                     newGame();
 
                     // Don't want to process snake direction for this tap
@@ -279,11 +296,13 @@ public class SnakeEngine extends SurfaceView implements Runnable {
         return true;
     }
 
-
     // Stop the thread
     //// And save all the required data for the game
     public void pause() {
         gameState.setPlaying(false);
+        gameState.setPaused(true);
+        if (gameState.isPaused() && !gameState.isDead()) gameState.setShowPausedText(true);
+
         saveGameData();
         try {
             mThread.join();
@@ -300,9 +319,9 @@ public class SnakeEngine extends SurfaceView implements Runnable {
             loadGameData();
         }
         gameState.setPlaying(true);
+
         mThread = new Thread(this);
         mThread.start();
-        // if (snakeAudio.isBackgroundMusicPaused()) snakeAudio.playBackgroundMusic();
     }
 
     // Method to save the game data
