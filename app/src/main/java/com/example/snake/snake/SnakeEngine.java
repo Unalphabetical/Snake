@@ -118,6 +118,16 @@ public class SnakeEngine extends SurfaceView implements Runnable {
         // reset the snake
         snakeHandler.reset(NUM_BLOCKS_WIDE, numBlocksHigh);
 
+        //// Reset the inverted state
+        Snake snake = snakeHandler.getSnake();
+        snake.setInverted(false);
+
+        //// Reset the FPS speed
+        this.TARGET_FPS = 10;
+
+        //// Reset the wrap around
+        snakeHandler.setWrapAround(false);
+
         // Get the apple(s) ready for dinner
         appleManager.spawnApple();
 
