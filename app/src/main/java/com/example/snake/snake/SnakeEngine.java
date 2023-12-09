@@ -10,7 +10,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.snake.SnakeMainMenuActivity;
+import com.example.snake.menus.SnakeControlMenuActivity;
 import com.example.snake.apples.abstracts.AbstractApple;
 import com.example.snake.audio.SnakeAudio;
 import com.example.snake.managers.AppleManager;
@@ -69,7 +69,7 @@ public class SnakeEngine extends SurfaceView implements Runnable {
     }
 
     //// Constructor for the Game Score text view
-    public SnakeEngine(SnakeMainMenuActivity context, Point size, View gameScoreView) {
+    public SnakeEngine(SnakeControlMenuActivity context, Point size, View gameScoreView) {
         super(context);
         initialize(context, size);
         this.gameScore = (TextView) gameScoreView;

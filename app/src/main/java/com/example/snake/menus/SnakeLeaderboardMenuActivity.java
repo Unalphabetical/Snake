@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.snake.R;
+import com.example.snake.SnakeMainMenuActivity;
 import com.example.snake.managers.LeaderboardManager;
 
 public class SnakeLeaderboardMenuActivity extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class SnakeLeaderboardMenuActivity extends AppCompatActivity {
 
     //// This click event moves us from the leaderboard menu to the main menu
     public void mainMenu(View v) {
-        Intent intent = new Intent(this, SnakeMenuActivity.class);
+        Intent intent = new Intent(this, SnakeMainMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
         finish();

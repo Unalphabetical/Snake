@@ -55,13 +55,13 @@ public class SnakeSettingsActivity extends AppCompatActivity {
 
     //// This click event moves us from the settings menu to the game
     public void resumeGame(View v) {
-        Intent intent = new Intent(this, SnakeMainMenuActivity.class);
+        Intent intent = new Intent(this, SnakeControlMenuActivity.class);
         startActivity(intent);
     }
 
     //// This click event moves us from the settings menu to the main menu
     public void mainMenu(View v) {
-        Intent intent = new Intent(this, SnakeMenuActivity.class);
+        Intent intent = new Intent(this, SnakeMainMenuActivity.class);
         startActivity(intent);
     }
 
