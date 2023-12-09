@@ -11,28 +11,37 @@
         android:text="@string/game"
         android:textSize="42sp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/play_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/play"
         android:textSize="24sp"
-        android:onClick="startGame"/>
+        android:onClick="startGame"
+        android:scaleType="fitCenter"
+        android:background="@nulll"
+        android:src="@drawable/buttonformenu"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/leaderboard_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/leaderboard"
         android:textSize="24sp"
-        android:onClick="leaderboardMenu"/>
+        android:onClick="leaderboardMenu"
+        android:scaleType="fitCenter"
+        android:background="@nulll"
+        android:src="@drawable/buttonformenu"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/settings_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/settings"
         android:textSize="24sp"
-        android:onClick="settingsMenu"/>
+        android:onClick="settingsMenu"
+        android:scaleType="fitCenter"
+        android:background="@nulll"
+        android:src="@drawable/buttonformenu"/>
 
 </LinearLayout>
