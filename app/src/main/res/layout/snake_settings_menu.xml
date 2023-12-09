@@ -25,10 +25,13 @@
         <Button
             android:id="@+id/resume_button"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
             android:onClick="resumeGame"
             android:text="@string/resume"
-            android:textSize="24sp" />
+            android:textAlignment="gravity"
+            android:textSize="24sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,7 +41,8 @@
             <ToggleButton
                 android:id="@+id/music_button"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonformenu"
                 android:textOn="@string/enableMusic"
                 android:textOff="@string/disableMusic"
                 android:checked="true"
@@ -48,7 +52,8 @@
             <ToggleButton
                 android:id="@+id/sound_button"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonformenu"
                 android:checked="true"
                 android:textOff="@string/disableSound"
                 android:textOn="@string/enableSound"
@@ -60,7 +65,9 @@
         <Button
             android:id="@+id/menu_button"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
             android:text="@string/mainMenu"
             android:textSize="24sp"
             android:onClick="mainMenu"/>
@@ -68,7 +75,9 @@
         <Button
             android:id="@+id/deletesave_button"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
             android:text="@string/deleteSave"
             android:textSize="24sp"
             android:onClick="deleteSave"/>
@@ -76,7 +85,9 @@
         <Button
             android:id="@+id/deleteleaderboard_button"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
             android:text="@string/deleteLeaderboard"
             android:textSize="24sp"
             android:onClick="deleteLeaderboard"/>

@@ -11,28 +11,46 @@
         android:text="@string/game"
         android:textSize="42sp"/>
 
-    <Button
-        android:id="@+id/play_button"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/play"
-        android:textSize="24sp"
-        android:onClick="startGame"/>
+        android:background="#2C2929"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/leaderboard_button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/leaderboard"
-        android:textSize="24sp"
-        android:onClick="leaderboardMenu"/>
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
+            android:onClick="startGame"
+            android:text="@string/play"
+            android:textAlignment="gravity"
+            android:textSize="24sp"/>
 
-    <Button
-        android:id="@+id/settings_button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:textSize="24sp"
-        android:onClick="settingsMenu"/>
+        <Button
+            android:id="@+id/leaderboard_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
+            android:onClick="leaderboardMenu"
+            android:text="@string/leaderboard"
+            android:textAlignment="gravity"
+            android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/settings_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonformenu"
+            android:gravity="center"
+            android:onClick="settingsMenu"
+            android:text="@string/settings"
+            android:textAlignment="gravity"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
