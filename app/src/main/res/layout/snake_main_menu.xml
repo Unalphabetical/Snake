@@ -13,14 +13,16 @@
 
     <ImageButton
         android:id="@+id/play_button"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/play"
-        android:textSize="24sp"
+        android:background="@null"
         android:onClick="startGame"
         android:scaleType="fitCenter"
-        android:background="@nulll"
-        android:src="@drawable/buttonformenu"/>
+        android:scaleX="1.5"
+        android:scaleY=".5"
+        android:src="@drawable/buttonformenu"
+        android:text="@string/play"
+        android:textSize="24sp" />
 
     <ImageButton
         android:id="@+id/leaderboard_button"
@@ -30,7 +32,7 @@
         android:textSize="24sp"
         android:onClick="leaderboardMenu"
         android:scaleType="fitCenter"
-        android:background="@nulll"
+        android:background="@null"
         android:src="@drawable/buttonformenu"/>
 
     <ImageButton
@@ -41,7 +43,7 @@
         android:textSize="24sp"
         android:onClick="settingsMenu"
         android:scaleType="fitCenter"
-        android:background="@nulll"
+        android:background="@null"
         android:src="@drawable/buttonformenu"/>
 
 </LinearLayout>
