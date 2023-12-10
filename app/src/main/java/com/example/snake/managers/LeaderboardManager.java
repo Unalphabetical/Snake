@@ -25,7 +25,7 @@ public class LeaderboardManager {
 
     public LeaderboardManager(Context context) {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
-        this.prefs = context.getSharedPreferences("com.example.snakio.leaderboard", Context.MODE_PRIVATE);
+        this.prefs = context.getSharedPreferences("com.example.snake.leaderboard", Context.MODE_PRIVATE);
         this.snakeList = Arrays.asList(new Snake[5]);
     }
 

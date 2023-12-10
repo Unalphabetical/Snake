@@ -319,6 +319,7 @@ public class SnakeEngine extends SurfaceView implements Runnable {
         if (saveManager.hasData()) {
             loadGameData();
         }
+        leaderboardManager.loadSnakeList();
         gameState.setPlaying(true);
 
         mThread = new Thread(this);
@@ -342,7 +343,6 @@ public class SnakeEngine extends SurfaceView implements Runnable {
         gameState = saveManager.getGameState();
         snakeHandler.move(saveManager.getHeading());
         appleManager.setAppleList(saveManager.getAppleList());
-        leaderboardManager.loadSnakeList();
     }
 
 }

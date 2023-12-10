@@ -34,7 +34,7 @@ public class SaveManager {
 
     public SaveManager(Context context) {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
-        this.prefs = context.getSharedPreferences("com.example.snakio.data", Context.MODE_PRIVATE);
+        this.prefs = context.getSharedPreferences("com.example.snake.data", Context.MODE_PRIVATE);
     }
 
     public Snake getSnake() {
