@@ -41,7 +41,7 @@ public class SnakeCanvas {
             canvas = surfaceHolder.lockCanvas();
 
             // Fill the screen with a color
-            canvas.drawColor(Color.argb(255, 26, 128, 182));
+            canvas.drawColor(Color.argb(255, 141, 153, 174));
             return true;
         }
 
