@@ -63,6 +63,7 @@ public class LeaderboardManager {
     }
 
     public void addSnake(Snake snake) {
+        if (getSnakeList() == null) this.snakeList = Arrays.asList(new Snake[5]);;
         if (getSnakeList().isEmpty()) return;
 
         int snakeToReplace = Integer.MAX_VALUE - 1;
