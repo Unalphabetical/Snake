@@ -302,8 +302,8 @@ public class SnakeEngine extends SurfaceView implements Runnable {
         gameState.setPlaying(false);
         gameState.setPaused(true);
         if (gameState.isPaused() && !gameState.isDead()) gameState.setShowPausedText(true);
+        if (snakeHandler.getSnake() != null || !snakeHandler.getSnake().getSegments().isEmpty()) saveGameData();
 
-        saveGameData();
         try {
             mThread.join();
             if (!snakeAudio.isBackgroundMusicPaused()) snakeAudio.pauseBackgroundMusic();
