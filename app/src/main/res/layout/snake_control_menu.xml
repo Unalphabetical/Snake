@@ -178,7 +178,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:background="@null"
-            android:src="@drawable/settings_icon"
+            android:src="@drawable/settingsicon"
             android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
