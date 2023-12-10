@@ -17,69 +17,93 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:textSize="42sp"/>
-
-        <Button
-            android:id="@+id/resume_button"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/settingslogo"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/resume_button"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:background="@null"
             android:onClick="resumeGame"
-            android:text="@string/resume"
-            android:textSize="24sp" />
+            android:scaleType="fitXY"
+            android:src="@drawable/resumebutton"
+            android:padding="1dp"/>
+
+        <ImageButton
+            android:id="@+id/menu_button"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:background="@null"
+            android:onClick="mainMenu"
+            android:scaleType="fitXY"
+            android:src="@drawable/mainmenu"
+            android:padding="1dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <ImageButton
+            android:id="@+id/deletesave_button"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:background="@null"
+            android:onClick="deleteSave"
+            android:scaleType="fitXY"
+            android:src="@drawable/deletesavebutton"
+            android:padding="1dp"/>
+
+        <ImageButton
+            android:id="@+id/deleteleaderboard_button"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:background="@null"
+            android:onClick="deleteLeaderboard"
+            android:scaleType="fitXY"
+            android:src="@drawable/deleteleaderboardbutton"
+            android:padding="1dp"/>
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="2dp">
 
             <ToggleButton
                 android:id="@+id/music_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textOn="@string/enableMusic"
-                android:textOff="@string/disableMusic"
-                android:checked="true"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@drawable/musictext"
                 android:onClick="toggleMusic"
-                android:textSize="24sp" />
+                android:textOn=""
+                android:textOff=""
+                android:checked="true"
+                android:textSize="24sp"/>
 
             <ToggleButton
                 android:id="@+id/sound_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textOff="@string/disableSound"
-                android:textOn="@string/enableSound"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@drawable/soundtext"
                 android:onClick="toggleSound"
+                android:textOn=""
+                android:textOff=""
+                android:checked="true"
                 android:textSize="24sp" />
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/menu_button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@string/mainMenu"
-            android:textSize="24sp"
-            android:onClick="mainMenu"/>
-
-        <Button
-            android:id="@+id/deletesave_button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@string/deleteSave"
-            android:textSize="24sp"
-            android:onClick="deleteSave"/>
-
-        <Button
-            android:id="@+id/deleteleaderboard_button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@string/deleteLeaderboard"
-            android:textSize="24sp"
-            android:onClick="deleteLeaderboard"/>
 
     </LinearLayout>
 
