@@ -177,6 +177,7 @@ public class SnakeEngine extends SurfaceView implements Runnable {
     // Update all the game objects
     public void update() {
 
+        if (snakeHandler.getSnake() == null || snakeHandler.getSnake().getSegments().isEmpty()) newGame();
         // Move the snake
         snakeHandler.move();
 
