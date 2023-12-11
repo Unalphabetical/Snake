@@ -4,23 +4,22 @@ A project by Professor Ali in CSC 133 at California State University, Sacramento
 
 # Assignment
 Refactor and redesign the Snake game in [Chapter 17](https://github.com/PacktPublishing/Learning-Java-by-Building-Android-Games-Second-Edition/tree/master/Chapter17) to improve it's structure, readability, and maintainability. The goal is to separare different functions into their own classes and apply design patterns where appropriate.
-
 ## Features
 
 - Background music
 - Gamepad controls
-- Save system
-- Delete button in case the save gets corrupted
+- Save and Leaderboard system
+- Delete button in case the save or leaderboard gets corrupted
 - Multiple apples
-    - Green
-    - Orange
-    - Purple
-    - Blue
+  - Green
+  - Orange
+  - Purple
+  - Blue
 - Powerups
-    - Decrease size and score
-    - Wrap around
-    - 2x Speed
-    - Inverted controls
+  - Decrease size and score
+  - Wrap around
+  - 2x Speed
+  - Inverted controls
 - More to come
 
 ## Tech Stack
